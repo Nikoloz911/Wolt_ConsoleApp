@@ -2,13 +2,14 @@
 internal class Order
 {
     public int Id { get; set; }
-    public int UserId { get; set; } // Foreign key to User
-    public int RestaurantId { get; set; } // Foreign key to Restaurants
+    public int UserId { get; set; } // Foreign key
+    public int RestaurantId { get; set; } // Foreign key
     public string OrderStatus { get; set; }
 
-    public User User { get; set; } // Navigation property to User
-    public Restaurants Restaurant { get; set; } // Navigation property to Restaurants
-    public List<OrderItem> OrderItems { get; set; } // Navigation property to OrderItems
+    public Payment Payment { get; set; } // Navigation property
+    public User User { get; set; } // Navigation property
+    public Restaurants Restaurant { get; set; } // Navigation property
+    public List<OrderItem> OrderItems { get; set; } // Navigation property
 }
 
 

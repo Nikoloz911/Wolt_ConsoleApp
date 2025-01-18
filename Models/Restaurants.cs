@@ -3,6 +3,7 @@ internal class Restaurants
 {
     public int Id { get; set; }
     public string RestaurantName { get; set; }
+    public decimal RestaurantBalance { get; set; }
     public double Rating { get; set; }
     public bool DeliveryAvailable { get; set; }
     public List<Product> Products { get; set; }// Navigation property
