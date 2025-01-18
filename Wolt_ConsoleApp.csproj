@@ -10,8 +10,6 @@
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Functions\" />
-    <Folder Include="Twilio\" />
-    <Folder Include="SMTP\" />
   </ItemGroup>
 
   <ItemGroup>
