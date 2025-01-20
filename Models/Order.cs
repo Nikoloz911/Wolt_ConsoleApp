@@ -9,7 +9,7 @@ internal class Order
     public Payment Payment { get; set; } // Navigation property
     public User User { get; set; } // Navigation property
     public Restaurants Restaurant { get; set; } // Navigation property
-    public List<OrderItem> OrderItems { get; set; } // Navigation property
+    public OrderItem OrderItem { get; set; } // Navigation property
 }
 
 
