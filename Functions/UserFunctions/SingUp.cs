@@ -1,9 +1,10 @@
 ﻿using BCrypt.Net;
+using System.Text;
 using Twilio.Types;
 using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Models;
 using Wolt_ConsoleApp.Twilio;
-
+using Wolt_ConsoleApp.SMTP;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class SingUp
 {
@@ -248,74 +249,90 @@ internal class SingUp
                                 while (!IsValidConfirmCode)
                                 {
                                     Clear();
-                                    ///// TWILIO SERVICE
-                                    //if (!PhoneNumber.StartsWith("995"))
-                                    //{
-                                    //    PhoneNumber = "995" + PhoneNumber;
-                                    //}
-                                    //PhoneNumber = "+" + PhoneNumber;
+                                    /// TWILIO SERVICE
+                                    if (!PhoneNumber.StartsWith("995"))
+                                    {
+                                        PhoneNumber = "995" + PhoneNumber;
+                                    }
+                                    PhoneNumber = "+" + PhoneNumber;
                                     //var twilioService = new TwilioService();
                                     //string sentCode = twilioService.SendVerificationCode(PhoneNumber);
-                                    ////// TWILIO SERVICE
+                                    //// TWILIO SERVICE
                                     Console.WriteLine("Enter Verification Code:");
                                     string ConfirmCode = Console.ReadLine();
-                                    //if (ConfirmCode == sentCode)
-                                    //{
-                                    //}
-                                    //else
-                                    //{
-                                    //    Clear();
-                                    //    Line();
-                                    //    Console.WriteLine("Verification Code Was Inccorect");
-                                    //    Line();
-                                    //    Console.WriteLine("1. Try Again");
-                                    //    Console.WriteLine("2. Exit Registration");
-                                    //    string retryCodeChoice = Console.ReadLine();
-                                    //    if (retryCodeChoice == "1")
-                                    //    {
-                                    //        continue;
-                                    //    }
-                                    //    else if (retryCodeChoice == "2")
-                                    //    {
-                                    //        Clear();
-                                    //        return;
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        InvalidChoice(); 
-                                    //        return;
-                                    //    }
-                                    //}
+                                    if (ConfirmCode == "1") /// sendCode
+                                    {
+                                    }
+                                    else
+                                    {
+                                        Clear();
+                                        Line();
+                                        Console.WriteLine("Verification Code Was Inccorect");
+                                        Line();
+                                        Console.WriteLine("1. Try Again");
+                                        Console.WriteLine("2. Exit Registration");
+                                        string retryCodeChoice = Console.ReadLine();
+                                        if (retryCodeChoice == "1")
+                                        {
+                                            continue;
+                                        }
+                                        else if (retryCodeChoice == "2")
+                                        {
+                                            Clear();
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            InvalidChoice();
+                                            return;
+                                        }
+                                    }
                                     /// CONFIRM CODE INPUT /// CONFIRM CODE INPUT
                                     /// PASSWORD INPUT   /// PASSWORD INPUT
                                     while (!IsValidPassword)
                                     {
+                                        string password = ""; // Variable to store the actual password
+                                        string hashedPassword = ""; // Variable to store the hashed password
                                         Clear();
                                         Console.WriteLine("Make User Password:");
-                                        string passwordInput = "";
+                                        StringBuilder passwordInput = new StringBuilder();
                                         while (true)
                                         {
-                                            var key = Console.ReadKey(true); 
-                                            if (key.Key == ConsoleKey.Enter) break; 
+                                            var key = Console.ReadKey(true);
+                                            if (key.Key == ConsoleKey.Enter) break;
                                             if (key.Key == ConsoleKey.Backspace && passwordInput.Length > 0)
                                             {
-                                                passwordInput = passwordInput.Substring(0, passwordInput.Length - 1); // Remove last character
+                                                passwordInput.Remove(passwordInput.Length - 1, 1);
                                                 Console.Write("\b \b");
                                             }
-                                            else
+                                            else if (key.Key != ConsoleKey.Backspace)
                                             {
-                                                passwordInput += key.KeyChar;
-                                                Console.Write("*"); 
+                                                passwordInput.Append(key.KeyChar);
+                                                Console.Write("*");
                                             }
                                         }
-                                      
-                                       
-                                      
+                                        Registered = true;
+                                        IsValidUserName = true;
+                                        IsValidUserLastName = true;
+                                        IsValidUserEmail = true;
+                                        IsValidUserAddress = true;
+                                        IsValidUserPhoneNumber = true;
+                                        IsValidPassword = true;
+                                        IsValidConfirmCode = true;
+                                        IsValidPassword = true;
+
+                                        password = passwordInput.ToString(); /// actual password
+                                        hashedPassword = BCrypt.Net.BCrypt.HashPassword(password); /// Hashed password
+
                                         Clear();
+                                        Console.WriteLine($"Password: {password}"); 
+                                        Console.WriteLine($"Hashed Password: {hashedPassword}");
+                                        
+                                       /// SMTP 
                                         Line();
-                                        Console.WriteLine("Registration Successful!");
+                                        Console.WriteLine($"User {FirstName} Registered Successful!");
                                         Line();
-                                      
+                                    
                                     }
                                 }
                             }

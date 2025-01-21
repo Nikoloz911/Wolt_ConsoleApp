@@ -19,24 +19,36 @@ internal class UserManagement
         bool MainMenu = false;
         while (!MainMenu)
         {
+            Clear();
             Console.WriteLine("1. Sign Up");
-            Console.WriteLine("2. Log In");
-            Console.WriteLine("3. User List");
-            Console.WriteLine("4. Main Menu");
+            Console.WriteLine("2. ");
+            Console.WriteLine("3. User List"); 
+            Console.WriteLine("4. Add Credit Card");
+            Console.WriteLine("5. Credit Card Information");
+            Console.WriteLine("6. Main Menu");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
                 SingUp.UserSignUp();
+                MainMenu = true;
             }
             else if (choice == "2")
             {
-                LogIn.UserLogIn();
+               
             }
             else if (choice == "3")
             {
                 // LIST
             }
             else if (choice == "4")
+            {
+                
+            }
+            else if (choice == "5")
+            {
+                
+            }
+            else if (choice == "6")
             {
                 Clear();
                 MainMenu = true;
