@@ -1,4 +1,6 @@
-﻿void Line() => Console.WriteLine(new string('-', 60));
+﻿using Wolt_ConsoleApp.Functions;
+
+void Line() => Console.WriteLine(new string('-', 60));
 
 bool running = true;
 while (running)
@@ -13,31 +15,31 @@ while (running)
     string choice = Console.ReadLine();
     if (choice == "1")
     {
-
+        UserManagement.UserManagementVoid();
     }
     else if (choice == "2")
     {
-
+        ProductManagement.ProductManagementVoid();
     }
     else if (choice == "3")
     {
-
+        RestaurantManagement.RestaurantManagementVoid();
     }
     else if (choice == "4")
     {
-
+        Analytics.AnalyticsVoid();
     }
     else if (choice == "5")
     {
-
+        FileManagement.FileManagementVoid();
     }
     else if (choice == "6")
     {
-
+        SystemLogs.SystemLogsVoid();
     }
     else if (choice == "7")
     {
-
+        Environment.Exit(0);
     }
     else
     {
