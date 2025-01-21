@@ -6,7 +6,7 @@ internal class Product
     public string ProductName { get; set; }
     public decimal ProductPrice { get; set; }
     public bool IsAvailable { get; set; }
-
+    public List<OrderItem> OrderItems { get; set; }
     public Restaurants Restaurants { get; set; } // Navigation property to Restaurants
 }
 

@@ -147,6 +147,7 @@ namespace Wolt_ConsoleApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -160,6 +161,12 @@ namespace Wolt_ConsoleApp.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,6 +221,11 @@ namespace Wolt_ConsoleApp.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_RestaurantId",
                 table: "Orders",
                 column: "RestaurantId");
@@ -266,10 +278,10 @@ namespace Wolt_ConsoleApp.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "UsersDetails");
 
             migrationBuilder.DropTable(
-                name: "UsersDetails");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "CreditCards");
