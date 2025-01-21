@@ -7,6 +7,8 @@ internal class OrderItem
     public decimal TotalPrice { get; set; }
     public int Quantity { get; set; }
     public DateTime OrderDate { get; set; }
+    public Product Product { get; set; }
+    public Order Order { get; set; }
 }
 
 
