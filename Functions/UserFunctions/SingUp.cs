@@ -250,13 +250,9 @@ internal class SingUp
                                 {
                                     Clear();
                                     /// TWILIO SERVICE
-                                    if (!PhoneNumber.StartsWith("995"))
-                                    {
-                                        PhoneNumber = "995" + PhoneNumber;
-                                    }
-                                    PhoneNumber = "+" + PhoneNumber;
+                                    var FullPhoneNumber = "+995" + PhoneNumber;
                                     //var twilioService = new TwilioService();
-                                    //string sentCode = twilioService.SendVerificationCode(PhoneNumber);
+                                    //string sentCode = twilioService.SendVerificationCode(FullPhoneNumber);
                                     //// TWILIO SERVICE
                                     Console.WriteLine("Enter Verification Code:");
                                     string ConfirmCode = Console.ReadLine();
@@ -323,14 +319,13 @@ internal class SingUp
 
                                         password = passwordInput.ToString(); /// actual password
                                         hashedPassword = BCrypt.Net.BCrypt.HashPassword(password); /// Hashed password
-
                                         Clear();
                                         Console.WriteLine($"Password: {password}"); 
                                         Console.WriteLine($"Hashed Password: {hashedPassword}");
-                                        
-                                       /// SMTP 
+                                        /// SMTP 
                                         Line();
                                         Console.WriteLine($"User {FirstName} Registered Successful!");
+                                        SmtpService.EmailSender($"{Email}"); /// add details in smtp.
                                         Line();
                                     
                                     }

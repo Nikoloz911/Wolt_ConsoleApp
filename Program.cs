@@ -1,5 +1,5 @@
 ﻿using Wolt_ConsoleApp.Functions;
-
+using Wolt_ConsoleApp.SMTP;
 void Line() => Console.WriteLine(new string('-', 60));
 
 bool running = true;
