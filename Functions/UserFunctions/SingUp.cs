@@ -287,8 +287,7 @@ internal class SingUp
                                     /// PASSWORD INPUT   /// PASSWORD INPUT
                                     while (!IsValidPassword)
                                     {
-                                        string password = ""; // Variable to store the actual password
-                                        string hashedPassword = ""; // Variable to store the hashed password
+                                     
                                         Clear();
                                         Console.WriteLine("Make User Password:");
                                         StringBuilder passwordInput = new StringBuilder();
@@ -315,19 +314,34 @@ internal class SingUp
                                         IsValidUserPhoneNumber = true;
                                         IsValidPassword = true;
                                         IsValidConfirmCode = true;
-                                        IsValidPassword = true;
+                                        IsValidPassword = true;              
+                                        Clear();                                        
+                                        string Userpassword = passwordInput.ToString();
+                                        string HashedPassword = BCrypt.Net.BCrypt.HashPassword(Userpassword);
 
-                                        password = passwordInput.ToString(); /// actual password
-                                        hashedPassword = BCrypt.Net.BCrypt.HashPassword(password); /// Hashed password
-                                        Clear();
-                                        Console.WriteLine($"Password: {password}"); 
-                                        Console.WriteLine($"Hashed Password: {hashedPassword}");
-                                        /// SMTP 
+                                        Console.WriteLine(Userpassword);
+                                        Console.WriteLine(HashedPassword);
+                                        User newUser = new User
+                                        {
+                                            UserName = FirstName, 
+                                            UserLastName = LastName,
+                                            UserPassword = HashedPassword,
+                                            UserCreated = DateTime.Now,  
+                                            IsActive = true,
+                                            HasWoltPlus = false,
+                                            UserDetails = new UserDetails 
+                                            {
+                                                UserEmail = Email,
+                                                UserAddress = Address,
+                                                UserPhoneNumber = PhoneNumber
+                                            }
+                                        };
+                                        _context.Users.Add(newUser);
+                                        _context.SaveChanges();
                                         Line();
-                                        Console.WriteLine($"User {FirstName} Registered Successful!");
+                                        Console.WriteLine($"User {FirstName} has Registered Successfully!");
+                                        Line();
                                         SmtpService.RegistrationEmailSender(Email, FirstName);
-                                        Line();
-                                    
                                     }
                                 }
                             }

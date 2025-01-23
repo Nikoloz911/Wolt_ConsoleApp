@@ -1,5 +1,6 @@
 ﻿using Wolt_ConsoleApp.Functions.UserFunctions;
-
+using Wolt_ConsoleApp.Data;
+using Microsoft.EntityFrameworkCore;
 namespace Wolt_ConsoleApp.Functions;
 internal class UserManagement
 {
@@ -16,6 +17,7 @@ internal class UserManagement
     }
     public static void UserManagementVoid()
     {
+        DataContext _context = new DataContext();
         bool MainMenu = false;
         while (!MainMenu)
         {
@@ -41,10 +43,27 @@ internal class UserManagement
             {
                
             }
+            /// USER LIST   /// USER LIST   /// USER LIST   /// USER LIST   
             else if (choice == "4")
             {
-                // LIST
+                var users = _context.Users
+                                    .OrderBy(u => u.UserName) 
+                                    .Include(d => d.UserDetails)
+                                    .ToList();
+
+                if (users.Any())
+                {
+                    foreach (var user in users)
+                    {
+                        Console.WriteLine($"{user.UserName} {user.UserLastName} - {user.UserDetails.UserEmail}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No users found.");
+                }
             }
+            /// USER LIST   /// USER LIST   /// USER LIST   /// USER LIST   
             else if (choice == "5")
             {
                 
