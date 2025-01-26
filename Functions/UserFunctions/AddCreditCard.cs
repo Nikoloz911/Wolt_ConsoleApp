@@ -108,7 +108,7 @@ namespace Wolt_ConsoleApp.Functions.UserFunctions
                                 Clear();
                                 Console.WriteLine("Enter Credit Card Holder Name");
                                 string UserCreditCardHolderName = Console.ReadLine();
-                                if(UserCreditCardHolderName == "")
+                                if(string.IsNullOrWhiteSpace(UserCreditCardHolderName))
                                 {
                                     Clear();
                                     Line();
