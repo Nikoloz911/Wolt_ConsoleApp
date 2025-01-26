@@ -10,7 +10,7 @@ internal class UserManagement
     }
     public static int Line()
     {
-        int length = 55;
+        int length = 60;
         string dashLine = new string('-', length);
         Console.WriteLine(dashLine);
         return length;
@@ -37,15 +37,16 @@ internal class UserManagement
             }
             else if (choice == "2")
             {
-               
+                MainMenu = true;
             }
             else if (choice == "3")
             {
-               
+                MainMenu = true;
             }
             /// USER LIST   /// USER LIST   /// USER LIST   /// USER LIST   
             else if (choice == "4")
             {
+                MainMenu = true;
                 var users = _context.Users
                                     .OrderBy(u => u.UserName) 
                                     .Include(d => d.UserDetails)
@@ -53,24 +54,30 @@ internal class UserManagement
 
                 if (users.Any())
                 {
+                    Clear();
                     foreach (var user in users)
                     {
-                        Console.WriteLine($"{user.UserName} {user.UserLastName} - {user.UserDetails.UserEmail}");
+                        Line();
+                        Console.WriteLine($"{user.UserName} {user.UserLastName}  --- {user.UserDetails.UserEmail} --- {user.UserDetails.UserPhoneNumber}");
+                        Line();
                     }
                 }
                 else
                 {
+                    Clear();
+                    Line();
                     Console.WriteLine("No users found.");
+                    Line();
                 }
             }
             /// USER LIST   /// USER LIST   /// USER LIST   /// USER LIST   
             else if (choice == "5")
             {
-                
+                MainMenu = true;
             }
             else if (choice == "6")
             {
-
+                MainMenu = true;
             }
             else if (choice == "7")
             {
