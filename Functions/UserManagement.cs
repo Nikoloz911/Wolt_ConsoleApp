@@ -43,6 +43,7 @@ internal class UserManagement
             else if (choice == "3")
             {
                 MainMenu = true;
+                LogOut.UserLogOut();
             }
             /// USER LIST   /// USER LIST   /// USER LIST   /// USER LIST   
             else if (choice == "4")

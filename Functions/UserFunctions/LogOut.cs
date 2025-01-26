@@ -1,7 +1,7 @@
 ﻿using Wolt_ConsoleApp.Data;
 using BCrypt.Net;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
-internal class LogIn
+internal class LogOut
 {
     public static void Clear()
     {
@@ -21,11 +21,10 @@ internal class LogIn
         Console.WriteLine("Invalid choice!");
         Line();
     }
-    public static void UserLogIn()
+    public static void UserLogOut()
     {
         DataContext _context = new DataContext();
         bool isLoggedIn = false;
-
         while (!isLoggedIn)
         {
             bool isValidUserName = false;
@@ -35,7 +34,6 @@ internal class LogIn
                 Clear();
                 Console.WriteLine("Enter your Username:");
                 userName = Console.ReadLine();
-
                 if (string.IsNullOrEmpty(userName))
                 {
                     Clear();
@@ -129,9 +127,9 @@ internal class LogIn
                 {
                     Clear();
                     Line();
-                    Console.WriteLine($"User: {userName} Loged In Successful!");
+                    Console.WriteLine($"User: {userName} Loged Out Successful!");
                     Line();
-                    user.IsActive = true;
+                    user.IsActive = false;
                     isValidPassword = true;
                     isLoggedIn = true;
                     _context.SaveChanges();
