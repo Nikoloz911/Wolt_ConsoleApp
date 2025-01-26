@@ -38,6 +38,7 @@ internal class UserManagement
             else if (choice == "2")
             {
                 MainMenu = true;
+                LogIn.UserLogIn();
             }
             else if (choice == "3")
             {
