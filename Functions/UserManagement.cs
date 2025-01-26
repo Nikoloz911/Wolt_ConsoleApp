@@ -76,6 +76,7 @@ internal class UserManagement
             else if (choice == "5")
             {
                 MainMenu = true;
+                AddCreditCard.AddUserCreditCard();
             }
             else if (choice == "6")
             {

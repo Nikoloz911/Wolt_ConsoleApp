@@ -72,6 +72,31 @@ internal class SingUp
                         return;
                     }
                 }
+                var ExistedUser = _context.Users.FirstOrDefault(u => u.UserName == FirstName);
+                if(ExistedUser != null)
+                {
+                    Clear();
+                    Line();
+                    Console.WriteLine("User With That Name Already Exists");
+                    Line();
+                    Console.WriteLine("1. Try Again");
+                    Console.WriteLine("2. Exit Registartion");
+                    string FirstNamechoice = Console.ReadLine();
+                    if (FirstNamechoice == "1")
+                    {
+                        continue;
+                    }
+                    else if (FirstNamechoice == "2")
+                    {
+                        Clear();
+                        return;
+                    }
+                    else
+                    {
+                        InvalidChoice();
+                        return;
+                    }
+                }
                 /// FIRST NAME INPUT /// FIRST NAME INPUT
                 /// LASTNAME INPUT /// LASTNAME INPUT  /// LASTNAME INPUT
                 while (!IsValidUserLastName)
