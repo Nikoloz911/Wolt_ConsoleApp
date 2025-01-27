@@ -1,4 +1,5 @@
-﻿using Wolt_ConsoleApp.Functions;
+﻿using Wolt_ConsoleApp.Data;
+using Wolt_ConsoleApp.Functions;
 using Wolt_ConsoleApp.SMTP;
 void Line() => Console.WriteLine(new string('-', 60));
 
@@ -11,7 +12,8 @@ while (running)
     Console.WriteLine("4. Analytics");
     Console.WriteLine("5. File Management");
     Console.WriteLine("6. System Logs");
-    Console.WriteLine("7. Exit App");
+    Console.WriteLine("7. Delete Database Table");
+    Console.WriteLine("8. Exit App");
     string choice = Console.ReadLine();
     if (choice == "1")
     {
@@ -38,6 +40,10 @@ while (running)
         SystemLogs.SystemLogsVoid();
     }
     else if (choice == "7")
+    {
+        Delete.DeleteTables();
+    }
+    else if (choice == "8")
     {
         Environment.Exit(0);
     }
