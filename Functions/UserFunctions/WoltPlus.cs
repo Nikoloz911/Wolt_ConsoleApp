@@ -67,7 +67,7 @@ internal class WoltPlus
             foreach (var card in user.CreditCards)
             {
                 string maskedCardNumber = new string('*', card.CreditCardNumber.Length - 4) + card.CreditCardNumber[^4..];
-                Console.WriteLine($"ID: {card.Id}, Number: {maskedCardNumber}, Balance: {card.CreditCardBalance:C}");
+                Console.WriteLine($"ID: {card.Id}, Number: {maskedCardNumber}, Balance: {card.CreditCardBalance}");
             }
             Line();
             bool validCardSelected = false;
@@ -101,7 +101,7 @@ internal class WoltPlus
                 Line();
                 Console.WriteLine("WoltPlus has been successfully purchased!");
                 Line();
-                Console.WriteLine($"Remaining Balance on Credit Card: {selectedCard.CreditCardBalance:C}");
+                Console.WriteLine($"Remaining Balance on Credit Card: {selectedCard.CreditCardBalance}");
                 Line();
                 validCardSelected = true; 
                 isAddedWoltPlus = true;  
