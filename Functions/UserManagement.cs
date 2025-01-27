@@ -35,7 +35,8 @@ internal class UserManagement
             Console.WriteLine("4. User List"); 
             Console.WriteLine("5. Add Credit Card");
             Console.WriteLine("6. Credit Card Information");
-            Console.WriteLine("7. Main Menu");
+            Console.WriteLine("7. Purchase Wolt+");
+            Console.WriteLine("8. Main Menu");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -119,6 +120,12 @@ internal class UserManagement
                 /// CREDIT CARD LIST  /// CREDIT CARD LIST  /// CREDIT CARD LIST
             }
             else if (choice == "7")
+            {
+                Clear();
+                MainMenu = true;
+                WoltPlus.PurchaseWoltPlus();
+            }
+            else if (choice == "8")
             {
                 Clear();
                 MainMenu = true;

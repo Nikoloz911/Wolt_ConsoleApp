@@ -36,6 +36,14 @@ namespace Wolt_ConsoleApp.Functions.UserFunctions
                     Clear();
                     Line();
                     var users = _context.Users.OrderBy(u => u.Id);
+                    if (!users.Any()) 
+                    {
+                        Clear();
+                        Line();
+                        Console.WriteLine("No users were found.");
+                        Line();
+                        return;
+                    }
                     foreach (var user in users)
                     {
                         Console.WriteLine($"ID: {user.Id}, Name: {user.UserName}");
