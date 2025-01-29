@@ -343,9 +343,6 @@ internal class SingUp
                                         Clear();                                        
                                         string Userpassword = passwordInput.ToString();
                                         string HashedPassword = BCrypt.Net.BCrypt.HashPassword(Userpassword);
-
-                                        Console.WriteLine(Userpassword);
-                                        Console.WriteLine(HashedPassword);
                                         User newUser = new User
                                         {
                                             UserName = FirstName, 

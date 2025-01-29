@@ -15,6 +15,13 @@ internal class UserManagement
         Console.WriteLine(dashLine);
         return length;
     }
+    public static int LineLong()
+    {
+        int length = 100;
+        string dashLine = new string('-', length);
+        Console.WriteLine(dashLine);
+        return length;
+    }
     public static void UserManagementVoid()
     {
         DataContext _context = new DataContext();
@@ -28,7 +35,9 @@ internal class UserManagement
             Console.WriteLine("4. User List"); 
             Console.WriteLine("5. Add Credit Card");
             Console.WriteLine("6. Credit Card Information");
-            Console.WriteLine("7. Main Menu");
+            Console.WriteLine("7. Add Balance");
+            Console.WriteLine("8. Purchase Wolt+");
+            Console.WriteLine("9. Main Menu");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -53,7 +62,6 @@ internal class UserManagement
                                     .OrderBy(u => u.UserName) 
                                     .Include(d => d.UserDetails)
                                     .ToList();
-
                 if (users.Any())
                 {
                     Clear();
@@ -81,8 +89,50 @@ internal class UserManagement
             else if (choice == "6")
             {
                 MainMenu = true;
+                /// CREDIT CARD LIST  /// CREDIT CARD LIST  /// CREDIT CARD LIST
+                Clear();
+                var creditCardInfo = from card in _context.CreditCards
+                                     join user in _context.Users on card.UserId equals user.Id
+                                     select new
+                                     {
+                                         UserName = user.UserName,
+                                         CreditCardNumber = card.CreditCardNumber,
+                                         ExpiryDate = card.CreditCardExpiryDate.ToString("MM/dd/yyyy"),
+                                         Balance = card.CreditCardBalance
+                                     };
+                if (creditCardInfo.Any())
+                {
+                    LineLong();
+                    foreach (var card in creditCardInfo)
+                    {
+                        string fullCardNumber = card.CreditCardNumber; 
+                        string last4Digits = fullCardNumber.Length >= 4 ? fullCardNumber.Substring(fullCardNumber.Length - 4) : fullCardNumber;
+                        Console.WriteLine($"User Name: {card.UserName}, Card Number: **** **** **** {last4Digits}, Expiry Date: {card.ExpiryDate}, Balance: {card.Balance:C}");
+                    }
+                    LineLong();
+                }
+                else
+                {
+                    Clear();
+                    Line();
+                    Console.WriteLine("No credit cards found.");
+                    Line();
+                }
+                /// CREDIT CARD LIST  /// CREDIT CARD LIST  /// CREDIT CARD LIST
             }
             else if (choice == "7")
+            {
+                Clear();
+                MainMenu = true;
+                AddBalance.AddBalanceToCreditCard();
+            }
+            else if (choice == "8")
+            {
+                Clear();
+                MainMenu = true;
+                WoltPlus.PurchaseWoltPlus();
+            }
+            else if (choice == "9")
             {
                 Clear();
                 MainMenu = true;
