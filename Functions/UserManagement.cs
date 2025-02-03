@@ -67,9 +67,9 @@ internal class UserManagement
                     Clear();
                     foreach (var user in users)
                     {
-                        Line();
-                        Console.WriteLine($"{user.UserName} {user.UserLastName}  --- {user.UserDetails.UserEmail} --- {user.UserDetails.UserPhoneNumber}");
-                        Line();
+                        LineLong();
+                        Console.WriteLine($"{user.UserName} {user.UserLastName}  (Email: {user.UserDetails.UserEmail}) (Number: {user.UserDetails.UserPhoneNumber})  (Is Active: {user.IsActive})");
+                        LineLong();
                     }
                 }
                 else
