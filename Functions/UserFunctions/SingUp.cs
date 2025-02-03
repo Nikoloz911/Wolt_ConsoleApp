@@ -5,6 +5,7 @@ using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Models;
 using Wolt_ConsoleApp.Twilio;
 using Wolt_ConsoleApp.SMTP;
+using System.Text.RegularExpressions;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class SingUp
 {
@@ -135,20 +136,23 @@ internal class SingUp
                         Clear();
                         Console.WriteLine("Enter User Email:");
                         string Email = Console.ReadLine();
-                        if (Email == "")
+                        /// REGEX VALIDATION /// REGEX VALIDATION 
+                        string emailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                        /// REGEX VALIDATION /// REGEX VALIDATION
+                        if (string.IsNullOrWhiteSpace(Email))
                         {
                             Clear();
                             Line();
-                            Console.WriteLine("Email Can not Be Empty!");
+                            Console.WriteLine("Email Cannot Be Empty!");
                             Line();
                             Console.WriteLine("1. Try Again");
-                            Console.WriteLine("2. Exit Registartion");
-                            string Emailchoice = Console.ReadLine();
-                            if (Emailchoice == "1")
+                            Console.WriteLine("2. Exit Registration");
+                            string EmailChoice = Console.ReadLine();
+                            if (EmailChoice == "1")
                             {
                                 continue;
                             }
-                            else if (Emailchoice == "2")
+                            else if (EmailChoice == "2")
                             {
                                 Clear();
                                 return;
@@ -159,7 +163,7 @@ internal class SingUp
                                 return;
                             }
                         }
-                        else if (!Email.Contains("@") || !Email.Contains("gmail") || !Email.EndsWith(".com"))
+                        else if (!Regex.IsMatch(Email, emailPattern)) 
                         {
                             Clear();
                             Line();
