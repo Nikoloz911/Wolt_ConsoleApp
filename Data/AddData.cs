@@ -3,20 +3,28 @@
 namespace Wolt_ConsoleApp.Data;
 internal class AddData
 {
-    private static readonly DataContext _context = new DataContext();
+    public static readonly DataContext _context = new DataContext();
 
     public static void AddRestaurantsAndProductsData(DataContext context)
     {
         AddRestaurantsData(context);
         AddProductsData(context);  
     }
-    private static void AddRestaurantsData(DataContext context)
+    public static void AddRestaurantsData(DataContext context)
     {
         var restaurants = new List<Restaurants>
         {
-            new Restaurants { RestaurantName = "Food Haven", RestaurantBalance = 5000.00m, Rating = 4.5, DeliveryAvailable = true },
-            new Restaurants { RestaurantName = "Tasty Bites", RestaurantBalance = 3000.00m, Rating = 4.0, DeliveryAvailable = false },
-            new Restaurants { RestaurantName = "Sushi World", RestaurantBalance = 7000.00m, Rating = 4.8, DeliveryAvailable = true }
+            new Restaurants { RestaurantName = "Megrelebi", RestaurantBalance = 15000.00m, Rating = 9.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "NUR Cofee Shop", RestaurantBalance = 9000.00m, Rating = 9.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Merdini", RestaurantBalance = 4000.00m, Rating = 9.6, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "SKA Greenhill", RestaurantBalance = 6000.00m, Rating = 9.6, DeliveryAvailable = false },
+            new Restaurants { RestaurantName = "Marge", RestaurantBalance = 16000.00m, Rating = 8.6, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Dunkin", RestaurantBalance = 18000.00m, Rating = 9.2, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "McDonald's", RestaurantBalance = 25000.00m, Rating = 8.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Domino's Pizza", RestaurantBalance = 20000.00m, Rating = 8.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Rachvelebi", RestaurantBalance = 1000.00m, Rating = 9.4, DeliveryAvailable = false },
+            new Restaurants { RestaurantName = "KFC", RestaurantBalance = 16000.00m, Rating = 8.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Khinkali House", RestaurantBalance = 11000.00m, Rating = 9.0, DeliveryAvailable = true },
         };
         foreach (var restaurant in restaurants)
         {
@@ -31,7 +39,7 @@ internal class AddData
         context.SaveChanges();
     }
 
-    private static void AddProductsData(DataContext context)
+    public static void AddProductsData(DataContext context)
     {
         var restaurants = context.Restaurants.ToList();
         if (!restaurants.Any())
