@@ -5,7 +5,7 @@ void Line() => Console.WriteLine(new string('-', 60));
 
 DataContext _context = new DataContext();
 
-AddData.AddRestaurantsAndProductsData(_context);
+// AddData.AddRestaurantsAndProductsData(_context);
 
 
 bool running = true;
