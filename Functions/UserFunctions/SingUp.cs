@@ -78,7 +78,7 @@ internal class SingUp
                 {
                     Clear();
                     Line();
-                    Console.WriteLine("User With That Name Already Exists");
+                    Console.WriteLine($"User Withgvvvvvvvvvffffffffffffffffffffffff='{FirstName}' Name Already Exists");
                     Line();
                     Console.WriteLine("1. Try Again");
                     Console.WriteLine("2. Exit Registartion");

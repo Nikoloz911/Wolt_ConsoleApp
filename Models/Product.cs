@@ -4,6 +4,7 @@ internal class Product
     public int Id { get; set; }
     public int RestaurantsId { get; set; } // Foreign key to Restaurants
     public string ProductName { get; set; }
+    public decimal ProductQuantity { get; set; }
     public decimal ProductPrice { get; set; }
     public bool IsAvailable { get; set; }
     public List<OrderItem> OrderItems { get; set; }
