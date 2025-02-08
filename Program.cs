@@ -7,7 +7,6 @@ DataContext _context = new DataContext();
 
 // AddData.AddRestaurantsAndProductsData(_context);
 
-
 bool running = true;
 while (running)
 {
