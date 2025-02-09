@@ -28,10 +28,11 @@ internal class ProductManagement
         while (!MainMenu) {
             Clear();
             Console.WriteLine("1. Add Product");
-            Console.WriteLine("2. Edit Product");
-            Console.WriteLine("3. Remove Product");
-            Console.WriteLine("4. Product List");
-            Console.WriteLine("5. Main Menu");
+            Console.WriteLine("2. Add Restaurant");
+            Console.WriteLine("3. Edit Product");
+            Console.WriteLine("4. Remove Product");
+            Console.WriteLine("5. Product List");
+            Console.WriteLine("6. Main Menu");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -39,12 +40,13 @@ internal class ProductManagement
                 MainMenu = true;
                 AddProduct.AddProductToRestaurant();
             }
-            else if (choice == "2") {
+            else if (choice == "2")
+            {
                 Clear();
                 MainMenu = true;
+                AddRestaurant.AddRestaurantToDatabase();
             }
-            else if (choice == "3")
-            {
+            else if (choice == "3") {
                 Clear();
                 MainMenu = true;
             }
@@ -54,6 +56,11 @@ internal class ProductManagement
                 MainMenu = true;
             }
             else if (choice == "5")
+            {
+                Clear();
+                MainMenu = true;
+            }
+            else if (choice == "6")
             {
                 Clear();
                 MainMenu = true;
