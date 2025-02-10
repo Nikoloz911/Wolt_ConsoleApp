@@ -96,7 +96,7 @@ internal class AddData
         new Product { ProductName = "Big Mcmenu", ProductQuantity = 8.00m, ProductPrice = 18.75m, IsAvailable = true },
         new Product { ProductName = "Chiken Nugets", ProductQuantity = 90.00m, ProductPrice = 9.85m, IsAvailable = true },
         new Product { ProductName = "Double cheeseburger", ProductQuantity = 80.00m, ProductPrice = 9.45m, IsAvailable = true },
-        new Product { ProductName = "Big Royal Set", ProductQuantity = 7.00m, ProductPrice = 50.45m, IsAvailable = true },
+        new Product { ProductName = "Royal Set", ProductQuantity = 7.00m, ProductPrice = 50.45m, IsAvailable = true },
         new Product { ProductName = "Happy Meal", ProductQuantity = 5.00m, ProductPrice = 11.65m, IsAvailable = true },
         new Product { ProductName = "Fries", ProductQuantity = 40.00m, ProductPrice = 5.95m, IsAvailable = true },
         new Product { ProductName = "Coca-Cola", ProductQuantity = 30.00m, ProductPrice = 4.25m, IsAvailable = true },
