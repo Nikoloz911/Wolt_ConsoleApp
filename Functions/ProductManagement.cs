@@ -37,6 +37,7 @@ internal class ProductManagement
             else if (choice == "3") {
                 Clear();
                 MainMenu = true;
+                EditProduct.EditProductToDatabase();
             }
             else if (choice == "4")
             {
