@@ -1,26 +1,11 @@
 ﻿using Wolt_ConsoleApp.Data;
-using Wolt_ConsoleApp.Functions.ProductFunctions;
+using Wolt_ConsoleApp.Functions.DataFunctions;
 namespace Wolt_ConsoleApp.Functions;
 internal class ProductManagement
 {
-    public static void Clear()
-    {
-        Console.Clear();
-    }
-    public static int Line()
-    {
-        int length = 60;
-        string dashLine = new string('-', length);
-        Console.WriteLine(dashLine);
-        return length;
-    }
-    public static int LineLong()
-    {
-        int length = 100;
-        string dashLine = new string('-', length);
-        Console.WriteLine(dashLine);
-        return length;
-    }
+    public static void Clear() => Console.Clear();
+    public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+    public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
     public static void ProductManagementVoid()
     {
         DataContext _context = new DataContext();
@@ -30,9 +15,12 @@ internal class ProductManagement
             Console.WriteLine("1. Add Product");
             Console.WriteLine("2. Add Restaurant");
             Console.WriteLine("3. Edit Product");
-            Console.WriteLine("4. Remove Product");
-            Console.WriteLine("5. Product List");
-            Console.WriteLine("6. Main Menu");
+            Console.WriteLine("4. Edit Restaurant");
+            Console.WriteLine("5. Remove Product");
+            Console.WriteLine("6. Remove Restaurant");
+            Console.WriteLine("7. Product List");
+            Console.WriteLine("8. Restaurant List");
+            Console.WriteLine("9. Main Menu");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -61,6 +49,21 @@ internal class ProductManagement
                 MainMenu = true;
             }
             else if (choice == "6")
+            {
+                Clear();
+                MainMenu = true;
+            }
+            else if (choice == "7")
+            {
+                Clear();
+                MainMenu = true;
+            }
+            else if (choice == "8")
+            {
+                Clear();
+                MainMenu = true;
+            }
+            else if (choice == "9")
             {
                 Clear();
                 MainMenu = true;

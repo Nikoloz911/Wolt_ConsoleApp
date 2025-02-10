@@ -5,7 +5,7 @@ using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Validators;
 using System.Linq.Expressions;
 
-namespace Wolt_ConsoleApp.Functions.ProductFunctions
+namespace Wolt_ConsoleApp.Functions.DataFunctions
 {
     internal class AddRestaurant
     {

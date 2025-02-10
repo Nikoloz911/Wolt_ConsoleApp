@@ -3,7 +3,7 @@ using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Models;
 using Wolt_ConsoleApp.Validators;
 
-namespace Wolt_ConsoleApp.Functions.ProductFunctions
+namespace Wolt_ConsoleApp.Functions.DataFunctions
 {
     internal class AddProduct
     {
