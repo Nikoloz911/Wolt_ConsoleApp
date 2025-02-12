@@ -1,12 +1,12 @@
 ﻿using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Functions.DataFunctions;
 namespace Wolt_ConsoleApp.Functions;
-internal class ProductManagement
+internal class DataManagement
 {
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-    public static void ProductManagementVoid()
+    public static void DataManagementVoid()
     {
         DataContext _context = new DataContext();
         bool MainMenu = false;
@@ -43,6 +43,7 @@ internal class ProductManagement
             {
                 Clear();
                 MainMenu = true;
+                EditRestaurant.EditRestaurantVoid();
             }
             else if (choice == "5")
             {
