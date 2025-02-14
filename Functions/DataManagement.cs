@@ -59,6 +59,7 @@ internal class DataManagement
             {
                 Clear();
                 MainMenu = true;
+                ProductList.ShowProductList();
             }
             else if (choice == "8")
             {
