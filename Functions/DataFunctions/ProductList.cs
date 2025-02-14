@@ -26,7 +26,6 @@ internal class ProductList
         {
             Clear();
             LineLong();
-
             var pagedProducts = products.Skip(currentIndex).Take(pageSize);
             foreach (var product in pagedProducts)
             {
@@ -34,10 +33,16 @@ internal class ProductList
                 Console.Write($"ID: {product.Id} - ");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write($"Product Name: {product.ProductName} | ");
+                Console.Write($"Name: {product.ProductName} | ");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"Price: {product.ProductPrice} | ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"Quantity: {product.ProductQuantity} | ");
+                Console.ResetColor();
+                Console.ForegroundColor = product.IsAvailable ? ConsoleColor.Blue : ConsoleColor.Red;
+                Console.Write($"Available: {product.IsAvailable} | ");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Restaurant: {product.Restaurants?.RestaurantName ?? "N/A"}");

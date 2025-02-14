@@ -65,6 +65,7 @@ internal class DataManagement
             {
                 Clear();
                 MainMenu = true;
+                RestaurantList.ShowRestaurantList();
             }
             else if (choice == "9")
             {

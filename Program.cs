@@ -2,7 +2,7 @@
 using Wolt_ConsoleApp.Functions;
 using Wolt_ConsoleApp.Models;
 void Line() => Console.WriteLine(new string('-', 60));
-
+void Clear() => Console.Clear();
 DataContext _context = new DataContext();
 
 // AddData.AddRestaurantsAndProductsData(_context);
@@ -48,6 +48,7 @@ while (running)
     }
     else
     {
+        Clear();
         Line();
         Console.WriteLine("Invalid choice");
         Line();
