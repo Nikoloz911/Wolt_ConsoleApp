@@ -17,7 +17,7 @@ internal class UserManagement
     }
     public static int LineLong()
     {
-        int length = 100;
+        int length = 120;
         string dashLine = new string('-', length);
         Console.WriteLine(dashLine);
         return length;
@@ -65,10 +65,29 @@ internal class UserManagement
                 if (users.Any())
                 {
                     Clear();
+                    Console.WriteLine("Users:");
                     foreach (var user in users)
                     {
                         LineLong();
-                        Console.WriteLine($"{user.UserName} {user.UserLastName}  (Email: {user.UserDetails.UserEmail}) (Number: {user.UserDetails.UserPhoneNumber})  (Is Active: {user.IsActive})");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write($"Name: {user.UserName}, ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write($"LastName: {user.UserLastName}, ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"Email: {user.UserDetails.UserEmail}, ");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"Number: {user.UserDetails.UserPhoneNumber}");
+                        Console.ResetColor();  
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write($"Address: {user.UserDetails.UserAddress}, ");
+                        Console.ForegroundColor = user.IsActive ? ConsoleColor.Green : ConsoleColor.Red;
+                        Console.Write($"Is Active: {user.IsActive}, ");
+                        Console.ForegroundColor = user.HasWoltPlus ? ConsoleColor.Green : ConsoleColor.Red;
+                        Console.WriteLine($"Has Wolt+: {user.HasWoltPlus}");
+                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"User Created: {user.UserCreated}, Password: {user.UserPassword}");
+                        Console.ResetColor(); 
                         LineLong();
                     }
                 }
@@ -97,6 +116,7 @@ internal class UserManagement
                                      {
                                          UserName = user.UserName,
                                          CreditCardNumber = card.CreditCardNumber,
+                                         CreditCardCVV = card.CreditCardCVV,
                                          ExpiryDate = card.CreditCardExpiryDate.ToString("MM/dd/yyyy"),
                                          Balance = card.CreditCardBalance
                                      };
@@ -105,9 +125,24 @@ internal class UserManagement
                     LineLong();
                     foreach (var card in creditCardInfo)
                     {
-                        string fullCardNumber = card.CreditCardNumber; 
+                        string fullCardNumber = card.CreditCardNumber;
                         string last4Digits = fullCardNumber.Length >= 4 ? fullCardNumber.Substring(fullCardNumber.Length - 4) : fullCardNumber;
-                        Console.WriteLine($"User Name: {card.UserName}, Card Number: **** **** **** {last4Digits}, Expiry Date: {card.ExpiryDate}, Balance: {card.Balance:C}");
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"User Name: {card.UserName}, ");
+                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write($"Card Number: **** **** **** {last4Digits}, ");
+                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"Expiry Date: {card.ExpiryDate}, ");
+                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"Balance: {card.Balance:C}, ");
+                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine($"CVV: {card.CreditCardCVV}");
+                        Console.ResetColor(); 
                     }
                     LineLong();
                 }
