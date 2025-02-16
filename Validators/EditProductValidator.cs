@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
 using Wolt_ConsoleApp.Models;
+
 namespace Wolt_ConsoleApp.Validators;
-internal class AddProductValidator : AbstractValidator<Product>
+internal class EditProductValidator : AbstractValidator<Product>    
 {
-    public AddProductValidator()
+    public EditProductValidator()
     {
         RuleFor(x => x.ProductName)
             .NotEmpty().WithMessage("Product Name is required")

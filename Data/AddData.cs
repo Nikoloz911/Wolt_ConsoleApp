@@ -14,13 +14,13 @@ internal class AddData
     {
         var restaurants = new List<Restaurants>
         {
-            new Restaurants { RestaurantName = "Megrelebi", RestaurantBalance = 15000.00m, Rating = 9.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "McDonald's", RestaurantBalance = 25000.00m, Rating = 8.8, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "NUR Cofee Shop", RestaurantBalance = 9000.00m, Rating = 9.8, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "Merdini", RestaurantBalance = 4000.00m, Rating = 9.6, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "SKA Greenhill", RestaurantBalance = 6000.00m, Rating = 9.6, DeliveryAvailable = false },
             new Restaurants { RestaurantName = "Marge", RestaurantBalance = 16000.00m, Rating = 8.6, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "Dunkin", RestaurantBalance = 18000.00m, Rating = 9.2, DeliveryAvailable = true },
-            new Restaurants { RestaurantName = "McDonald's", RestaurantBalance = 25000.00m, Rating = 8.8, DeliveryAvailable = true },
+            new Restaurants { RestaurantName = "Megrelebi", RestaurantBalance = 15000.00m, Rating = 9.8, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "Domino's Pizza", RestaurantBalance = 20000.00m, Rating = 8.8, DeliveryAvailable = true },
             new Restaurants { RestaurantName = "Rachvelebi", RestaurantBalance = 1000.00m, Rating = 9.4, DeliveryAvailable = false },
             new Restaurants { RestaurantName = "KFC", RestaurantBalance = 16000.00m, Rating = 8.8, DeliveryAvailable = true },
@@ -50,12 +50,16 @@ internal class AddData
         }
         var products = new List<Product>
     {
-            // Megrelebi Products
-        new Product { ProductName = "Gomi", ProductQuantity = 15.00m, ProductPrice = 8.99m, IsAvailable = true },
-        new Product { ProductName = "Baze", ProductQuantity = 10.00m, ProductPrice = 12.00m, IsAvailable = true },
-        new Product { ProductName = "Xarcho", ProductQuantity = 6.00m, ProductPrice = 22.00m, IsAvailable = false },
-        new Product { ProductName = "Elarji", ProductQuantity = 5.00m, ProductPrice = 22.00m, IsAvailable = true },
-        new Product { ProductName = "Sawebeli", ProductQuantity = 0.00m, ProductPrice = 8.00m, IsAvailable = true },
+           // McDonald's Products
+        new Product { ProductName = "Cheeseburger Mcmenu", ProductQuantity = 4.00m, ProductPrice = 13.99m, IsAvailable = true },
+        new Product { ProductName = "Big Mcmenu", ProductQuantity = 8.00m, ProductPrice = 18.75m, IsAvailable = true },
+        new Product { ProductName = "Chiken Nugets", ProductQuantity = 90.00m, ProductPrice = 9.85m, IsAvailable = true },
+        new Product { ProductName = "Double cheeseburger", ProductQuantity = 80.00m, ProductPrice = 9.45m, IsAvailable = true },
+        new Product { ProductName = "Royal Set", ProductQuantity = 7.00m, ProductPrice = 50.45m, IsAvailable = true },
+        new Product { ProductName = "Happy Meal", ProductQuantity = 5.00m, ProductPrice = 11.65m, IsAvailable = true },
+        new Product { ProductName = "Fries", ProductQuantity = 40.00m, ProductPrice = 5.95m, IsAvailable = true },
+        new Product { ProductName = "Coca-Cola", ProductQuantity = 30.00m, ProductPrice = 4.25m, IsAvailable = true },
+        new Product { ProductName = "Sprite", ProductQuantity = 19.00m, ProductPrice = 4.25m, IsAvailable = false },
 
         // NUR Cofee Shop Products
         new Product { ProductName = "Filter Coffee", ProductQuantity = 10.00m, ProductPrice = 9.00m, IsAvailable = true },
@@ -91,17 +95,13 @@ internal class AddData
         new Product { ProductName = "Raf Coffee", ProductQuantity = 14.00m, ProductPrice = 10.99m, IsAvailable = true },
         new Product { ProductName = "Late", ProductQuantity = 18.00m, ProductPrice = 7.90m, IsAvailable = true },
         new Product { ProductName = "tea", ProductQuantity = 10.00m, ProductPrice = 5.99m, IsAvailable = false },
-        // McDonald's Products
-        new Product { ProductName = "Double cheeseburger Mcmenu", ProductQuantity = 4.00m, ProductPrice = 13.99m, IsAvailable = true },
-        new Product { ProductName = "Big Mcmenu", ProductQuantity = 8.00m, ProductPrice = 18.75m, IsAvailable = true },
-        new Product { ProductName = "Chiken Nugets", ProductQuantity = 90.00m, ProductPrice = 9.85m, IsAvailable = true },
-        new Product { ProductName = "Double cheeseburger", ProductQuantity = 80.00m, ProductPrice = 9.45m, IsAvailable = true },
-        new Product { ProductName = "Big Royal Set", ProductQuantity = 7.00m, ProductPrice = 50.45m, IsAvailable = true },
-        new Product { ProductName = "Happy Meal", ProductQuantity = 5.00m, ProductPrice = 11.65m, IsAvailable = true },
-        new Product { ProductName = "Fries", ProductQuantity = 40.00m, ProductPrice = 5.95m, IsAvailable = true },
-        new Product { ProductName = "Coca-Cola", ProductQuantity = 30.00m, ProductPrice = 4.25m, IsAvailable = true },
-        new Product { ProductName = "Sprite", ProductQuantity = 19.00m, ProductPrice = 4.25m, IsAvailable = false },
 
+         // Megrelebi Products
+        new Product { ProductName = "Gomi", ProductQuantity = 15.00m, ProductPrice = 8.99m, IsAvailable = true },
+        new Product { ProductName = "Baze", ProductQuantity = 10.00m, ProductPrice = 12.00m, IsAvailable = true },
+        new Product { ProductName = "Xarcho", ProductQuantity = 6.00m, ProductPrice = 22.00m, IsAvailable = false },
+        new Product { ProductName = "Elarji", ProductQuantity = 5.00m, ProductPrice = 22.00m, IsAvailable = true },
+        new Product { ProductName = "Sawebeli", ProductQuantity = 0.00m, ProductPrice = 8.00m, IsAvailable = true },
         // Domino's Pizza Products
         new Product { ProductName = "Medium Pizza", ProductQuantity = 2.00m, ProductPrice = 28.49m, IsAvailable = true },
         new Product { ProductName = "Large Pizza", ProductQuantity = 8.00m, ProductPrice = 39.99m, IsAvailable = true },
@@ -123,17 +123,16 @@ internal class AddData
         
     };
         // Define how many products each restaurant should have
-        var productsPerRestaurant = new List<int> { 5, 7, 5, 5, 5, 4, 9, 4, 3, 4, 2, };
-        int productIndex = 0; // To track which product we're assigning
+        var productsPerRestaurant = new List<int> { 9, 7, 5, 5, 5, 4, 5, 4, 3, 4, 2, };
+        int productIndex = 0; 
         for (int i = 0; i < restaurants.Count; i++)
         {
             var restaurant = restaurants[i];
-            int productCountForThisRestaurant = productsPerRestaurant[i]; // Number of products for this restaurant
-
+            int productCountForThisRestaurant = productsPerRestaurant[i];
             for (int j = 0; j < productCountForThisRestaurant && productIndex < products.Count; j++)
             {
                 var product = products[productIndex];
-                if (!existingProducts.Contains(product.ProductName.ToLower())) // Ensure product is not duplicated
+                if (!existingProducts.Contains(product.ProductName.ToLower())) 
                 {
                     var newProduct = new Product
                     {
@@ -143,14 +142,11 @@ internal class AddData
                         IsAvailable = product.IsAvailable,
                         RestaurantsId = restaurant.Id
                     };
-
                     context.Products.Add(newProduct);
                 }
-
-                productIndex++; // Move to the next product
+                productIndex++;
             }
         }
-
         context.SaveChanges();
     }
 
