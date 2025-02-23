@@ -1,10 +1,9 @@
 ﻿using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Functions;
 using Wolt_ConsoleApp.Models;
-void Line() => Console.WriteLine(new string('-', 60));
-void Clear() => Console.Clear();
-DataContext _context = new DataContext();
 
+
+//DataContext _context = new DataContext();
 // AddData.AddRestaurantsAndProductsData(_context);
 
 bool running = true;
@@ -48,9 +47,9 @@ while (running)
     }
     else
     {
-        Clear();
-        Line();
+        Console.Clear();
+        Console.WriteLine("---------------------------------");
         Console.WriteLine("Invalid choice");
-        Line();
+        Console.WriteLine("---------------------------------");
     }
 }
