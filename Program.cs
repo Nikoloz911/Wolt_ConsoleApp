@@ -10,12 +10,13 @@ bool running = true;
 while (running)
 {
     Console.WriteLine("1. User Management");
-    Console.WriteLine("2. Data Management");    
-    Console.WriteLine("3. Analytics");
-    Console.WriteLine("4. File Management");
-    Console.WriteLine("5. System Logs");
-    Console.WriteLine("6. Delete Database Table");
-    Console.WriteLine("7. Exit App");
+    Console.WriteLine("2. Data Management");  
+    Console.WriteLine("3. Order Products");
+    Console.WriteLine("4. Analytics");
+    Console.WriteLine("5. File Management");
+    Console.WriteLine("6. System Logs");
+    Console.WriteLine("7. Delete Database Table");
+    Console.WriteLine("8. Exit App");
     string choice = Console.ReadLine();
     if (choice == "1")
     {
@@ -27,21 +28,25 @@ while (running)
     }
     else if (choice == "3")
     {
-        Analytics.AnalyticsVoid();
+        
     }
     else if (choice == "4")
     {
-        FileManagement.FileManagementVoid();
+        Analytics.AnalyticsVoid();
     }
     else if (choice == "5")
     {
-        SystemLogs.SystemLogsVoid();
+        FileManagement.FileManagementVoid();
     }
     else if (choice == "6")
     {
-        Delete.DeleteTables();
+        SystemLogs.SystemLogsVoid();
     }
     else if (choice == "7")
+    {
+        Delete.DeleteTables();
+    }
+    else if (choice == "8")
     {
         Environment.Exit(0);
     }
