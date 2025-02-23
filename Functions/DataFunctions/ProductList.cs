@@ -6,7 +6,7 @@ internal class ProductList
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-    public static void ShowProductList()
+    public static bool ShowProductList()
     {
         using DataContext _context = new DataContext();
         var products = _context.Products
@@ -18,7 +18,7 @@ internal class ProductList
             Line();
             Console.WriteLine("No products available.");
             Line();
-            return;
+            return false;
         }
         int pageSize = 20;
         int currentIndex = 0;
@@ -50,17 +50,18 @@ internal class ProductList
             }
             LineLong();
             Console.WriteLine("1. See the next 20 products");
-            Console.WriteLine("2. Back to main menu");
+            Console.WriteLine("2. Back to Data Management menu");
             var choice = Console.ReadLine();
             Clear();
             if (choice == "2")
-                return;
+                return false;
             if (choice == "1")
                 currentIndex += pageSize;
         }
         Clear();
         Line();
-        Console.WriteLine("No more products to display.");
+        Console.WriteLine("No More Products To Display.");
         Line();
+        return true;
     }
 }

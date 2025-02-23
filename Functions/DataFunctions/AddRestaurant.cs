@@ -13,8 +13,8 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
         private static readonly AddRestaurantValidator _validator = new AddRestaurantValidator();
         public static void Clear() => Console.Clear();
         public static void Line() => Console.WriteLine(new string('-', 60));
-        public static void InvalidChoice() { Clear(); Line(); Console.WriteLine("Invalid choice"); Line(); }
-        public static void AddRestaurantToDatabase()
+        public static void InvalidChoice() { Clear(); Line(); Console.WriteLine("Invalid choice!"); Line(); }
+        public static bool AddRestaurantToDatabase()
         {
             while (true)
             {
@@ -23,19 +23,20 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 string restaurantName;
                 while (true)
                 {
+                    Clear();
                     Console.WriteLine("Enter Restaurant Name:");
                     restaurantName = Console.ReadLine()?.Trim();
+                    Clear();
                     if (ValidateInput(new Restaurants { RestaurantName = restaurantName }, x => x.RestaurantName))
                         break;
-                    if (!HandleRetry()) return; 
+                    if (!HandleRetry()) return false; 
                 }
                 if (_context.Restaurants.Any(r => r.RestaurantName == restaurantName))
                 {
-                    Clear();
                     Line();
                     Console.WriteLine("Restaurant Name already exists.");
                     Line();
-                    if (!HandleRetry()) return;
+                    if (!HandleRetry()) return false;
                     continue;
                 }
                 // Restaurant Name // Restaurant Name
@@ -50,9 +51,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         ValidateInput(new Restaurants { RestaurantBalance = restaurantBalance }, x => x.RestaurantBalance))
                         break;
                     Line();
-                    Console.WriteLine("Invalid input! Please enter  number.");
+                    Console.WriteLine("Invalid input! Please enter number.");
                     Line();
-                    if (!HandleRetry()) return;
+                    if (!HandleRetry()) return false;
                 }
                 // Restaurant Balance // Restaurant Balance
                 // Rating // Rating // Rating  // Rating
@@ -68,7 +69,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                     Line();
                     Console.WriteLine("Invalid input. Please enter a valid rating.");
                     Line();
-                    if (!HandleRetry()) return;
+                    if (!HandleRetry()) return false;
                 }
                 // Rating // Rating // Rating  // Rating
                 // Delivery Availability   // Delivery Availability
@@ -86,7 +87,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                     Line();
                     Console.WriteLine("Invalid input. Please enter 'Y' or 'N'.");
                     Line();
-                    if (!HandleRetry()) return;
+                    if (!HandleRetry()) return false;
                 }
                 // Delivery Availability   // Delivery Availability
                 // Add to database   // Add to database   // Add to database
@@ -103,7 +104,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 Line();
                 Console.WriteLine("Restaurant Added Successfully!");
                 Line();
-                return; 
+                return true; 
             }
         }
         private static bool ValidateInput<T>(Restaurants restaurant, Expression<Func<Restaurants, T>> property)

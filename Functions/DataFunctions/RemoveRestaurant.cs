@@ -50,7 +50,7 @@ internal class RemoveRestaurant
             else
             {
                 Line();
-                Console.WriteLine("Invalid choice.");
+                Console.WriteLine("Invalid choice!");
                 Line();
                 return false;
             }

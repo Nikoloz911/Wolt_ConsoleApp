@@ -10,7 +10,7 @@ bool running = true;
 while (running)
 {
     Console.WriteLine("1. User Management");
-    Console.WriteLine("2. Data Management");
+    Console.WriteLine("2. Data Management");    
     Console.WriteLine("3. Analytics");
     Console.WriteLine("4. File Management");
     Console.WriteLine("5. System Logs");

@@ -9,25 +9,10 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
     {
         public static DataContext _context = new DataContext();
         public static AddProductValidator _validator = new AddProductValidator();
-        public static void Clear()
-        {
-            Console.Clear();
-        }
-        public static int Line()
-        {
-            int length = 60;
-            string dashLine = new string('-', length);
-            Console.WriteLine(dashLine);
-            return length;
-        }
-        public static void InvalidChoice()
-        {
-            Clear();
-            Line();
-            Console.WriteLine("Invalid choice");
-            Line();
-        }
-        public static void AddProductToRestaurant()
+        public static void Clear() => Console.Clear();
+        public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+        public static void InvalidChoice() { Clear(); Line(); Console.WriteLine("Invalid choice!"); Line(); }
+        public static bool AddProductToRestaurant()
         {
             bool IsProductAdded = false;
             while (!IsProductAdded)
@@ -51,7 +36,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine(validationResult.Errors[0].ErrorMessage);
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     if (_context.Products.Any(p => p.ProductName == productName))
@@ -59,7 +44,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Product Name already exists.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     IsValidName = true;
@@ -76,7 +61,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Invalid price. Please enter a number.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     var validationResult = _validator.Validate(new Product { ProductPrice = productPrice }, options => options.IncludeProperties(x => x.ProductPrice));
@@ -86,7 +71,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine(validationResult.Errors[0].ErrorMessage);
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     IsValidPrice = true;
@@ -114,7 +99,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Invalid input. Enter Y or N.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                     }
                 }
                 // Validate Product Quantity  // Validate Product Quantity
@@ -129,7 +114,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Invalid quantity. Please enter a number.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     var validationResult = _validator.Validate(new Product { ProductQuantity = productQuantity }, options => options.IncludeProperties(x => x.ProductQuantity));
@@ -139,7 +124,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine(validationResult.Errors[0].ErrorMessage);
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     IsValidQuantity = true;
@@ -163,7 +148,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Invalid ID. Enter a number.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     if (!_context.Restaurants.Any(r => r.Id == restaurantId))
@@ -172,7 +157,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Line();
                         Console.WriteLine("Restaurant ID not found.");
                         Line();
-                        if (!HandleRetry()) return;
+                        if (!HandleRetry()) return false;
                         continue;
                     }
                     IsValidRestaurant = true;
@@ -193,7 +178,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 Console.WriteLine("Product Added successfully!");
                 Line();
                 IsProductAdded = true;
+                return true;
             }
+            return false;
         }
         private static bool HandleRetry()
         {
@@ -201,7 +188,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
             Console.WriteLine("2. Cancel");
             string choice = Console.ReadLine();
             Clear();
-            if (choice == "1") return true;
+            if (choice == "1") return false;
             if (choice == "2") return false;
             InvalidChoice();
             return false;

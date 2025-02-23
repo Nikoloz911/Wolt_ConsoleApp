@@ -40,7 +40,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                     }
                 }
                 Console.WriteLine("1. Try Again");
-                Console.WriteLine("2. Main Menu");
+                Console.WriteLine("2. Data Management Menu");
                 string choice = Console.ReadLine()?.Trim();
                 Clear();
                 if (choice == "1")
@@ -52,7 +52,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 else
                 {
                     Line();
-                    Console.WriteLine("Invalid choice.");
+                    Console.WriteLine("Invalid choice!");
                     Line();
                     return false;
                 }

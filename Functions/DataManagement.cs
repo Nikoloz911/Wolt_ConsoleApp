@@ -26,9 +26,7 @@ namespace Wolt_ConsoleApp.Functions
                 Console.WriteLine("7. Product List");
                 Console.WriteLine("8. Restaurant List");
                 Console.WriteLine("9. Main Menu");
-                Console.Write("Enter choice: ");
                 string choice = Console.ReadLine()?.Trim();
-
                 Clear();
                 switch (choice)
                 {
