@@ -13,10 +13,9 @@ namespace Wolt_ConsoleApp.Functions
         {
             DataContext _context = new DataContext();
             bool MainMenu = false;
-
+            Clear();
             while (!MainMenu)
-            {
-                Clear();
+            {      
                 Console.WriteLine("1. Add Product");
                 Console.WriteLine("2. Add Restaurant");
                 Console.WriteLine("3. Edit Product");
@@ -55,9 +54,11 @@ namespace Wolt_ConsoleApp.Functions
                         MainMenu = RestaurantList.ShowRestaurantList();
                         break;
                     case "9":
+                        Clear();
                         MainMenu = true; // Exit to main menu
                         break;
                     default:
+                        Clear();
                         Line();
                         Console.WriteLine("Invalid Choice!");
                         Line();

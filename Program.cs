@@ -3,8 +3,8 @@ using Wolt_ConsoleApp.Functions;
 using Wolt_ConsoleApp.Models;
 
 
-//DataContext _context = new DataContext();
-// AddData.AddRestaurantsAndProductsData(_context);
+DataContext _context = new DataContext();
+AddData.AddRestaurantsAndProductsData(_context);
 
 bool running = true;
 while (running)

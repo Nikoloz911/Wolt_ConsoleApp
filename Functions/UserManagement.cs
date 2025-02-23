@@ -68,12 +68,15 @@ internal class UserManagement
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"User Created: {user.UserCreated}, Password: {user.UserPassword}");
                             Console.ResetColor();
-                            LineLong();
                         }
+                        LineLong();
                     }
                     else
                     {
+                        Line();
                         Console.WriteLine("No users found.");
+                        Line();
+                        MainMenu = true;
                     }
                     break;
                 /// USER LIST  /// USER LIST  /// USER LIST
@@ -119,7 +122,10 @@ internal class UserManagement
                     }
                     else
                     {
+                        Line();
                         Console.WriteLine("No credit cards found.");
+                        Line();
+                        MainMenu = true;
                     }
                     break;
                 /// CREDIT CARD LIST  /// CREDIT CARD LIST  /// CREDIT CARD LIST
