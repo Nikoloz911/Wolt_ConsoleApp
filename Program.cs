@@ -2,7 +2,7 @@
 using Wolt_ConsoleApp.Functions;
 using Wolt_ConsoleApp.Models;
 
-
+static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
 // DataContext _context = new DataContext();
 // AddData.AddRestaurantsAndProductsData(_context);
 
@@ -12,11 +12,11 @@ while (running)
     Console.WriteLine("1. User Management");
     Console.WriteLine("2. Data Management");  
     Console.WriteLine("3. Order Products");
-    Console.WriteLine("4. Analytics");
-    Console.WriteLine("5. File Management");
-    Console.WriteLine("6. System Logs");
-    Console.WriteLine("7. Delete Database Table");
-    Console.WriteLine("8. Exit App");
+    Console.WriteLine("4. Order Details");
+    Console.WriteLine("5. Analytics");
+    Console.WriteLine("6. File Management");
+    Console.WriteLine("7. System Logs");
+    Console.WriteLine("8. Delete Database Table");
     string choice = Console.ReadLine();
     if (choice == "1")
     {
@@ -32,29 +32,29 @@ while (running)
     }
     else if (choice == "4")
     {
-        Analytics.AnalyticsVoid();
+        OrderDetails.ViewOrderDetails();
     }
     else if (choice == "5")
     {
-        FileManagement.FileManagementVoid();
+        Analytics.AnalyticsVoid();
     }
     else if (choice == "6")
     {
-        SystemLogs.SystemLogsVoid();
+        FileManagement.FileManagementVoid();
     }
     else if (choice == "7")
     {
-        Delete.DeleteTables();
+        SystemLogs.SystemLogsVoid();
     }
     else if (choice == "8")
     {
-        Environment.Exit(0);
+        Delete.DeleteTables();
     }
     else
     {
         Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Invalid choice");
-        Console.WriteLine("---------------------------------");
+        Line();
+        Console.WriteLine("Invalid choice!");
+        Line();
     }
 }

@@ -15,7 +15,9 @@ internal class OrderProducts
 
     public static void Order()
     {
-        var allProducts = _context.Products.ToList();
+        var allProducts = _context.Products
+            .Include(r => r.Restaurants)
+            .ToList();
         int startIndex = 0;
         const int productsToShow = 25;
 
@@ -31,13 +33,15 @@ internal class OrderProducts
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"ID: {product.Id}, ");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write($"Product Name: {product.ProductName}, ");
+                Console.Write($"Name: {product.ProductName}, ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"Price: {product.ProductPrice}, ");
                 Console.ForegroundColor = product.IsAvailable ? ConsoleColor.Green : ConsoleColor.Red;
-                Console.Write($"Is Available: {product.IsAvailable}, ");
+                Console.Write($"Available: {product.IsAvailable}, ");
                 Console.ForegroundColor = product.ProductQuantity == 0m ? ConsoleColor.Red : ConsoleColor.Cyan;
-                Console.WriteLine($"Quantity: {product.ProductQuantity}");
+                Console.Write($"Quantity: {product.ProductQuantity}, ");
+                Console.ForegroundColor = product.Restaurants.DeliveryAvailable ? ConsoleColor.DarkYellow : ConsoleColor.Red;
+                Console.WriteLine($"Restaurant: {product.Restaurants.DeliveryAvailable}, ");
                 Console.ResetColor();
                 totalPrinted++;
             }
@@ -60,8 +64,15 @@ internal class OrderProducts
             }
 
             var foundProduct = _context.Products
-                .Include(Restaurants => Restaurants.Restaurants)
-                .FirstOrDefault(p => p.ProductName.ToLower() == productChoice.ToLower() || p.Id.ToString() == productChoice);
+                .Include(r => r.Restaurants)
+                .FirstOrDefault(p => p.ProductName
+                .ToLower() == productChoice
+                .ToLower() || p.Id
+                .ToString() == productChoice);
+            bool multipleProductsExist = _context.Products
+              .Count(p => p.ProductName
+              .ToLower() == productChoice
+              .ToLower()) > 1;
             /// ORDER PRODUCT  /// ORDER PRODUCT  /// ORDER PRODUCT  /// ORDER PRODUCT
             /// ORDER PRODUCT  /// ORDER PRODUCT  /// ORDER PRODUCT  /// ORDER PRODUCT
             if (foundProduct != null)
@@ -81,6 +92,12 @@ internal class OrderProducts
                 if (foundProduct.Restaurants.DeliveryAvailable == false)
                 {
                     if (HandleRetry($"Delivery not available for this restaurant"))
+                        return;
+                    continue;
+                }
+                if (multipleProductsExist == true)
+                {
+                    if (HandleRetry($"Multiple Products Exist! Please Try Again And Enter Product ID"))
                         return;
                     continue;
                 }
@@ -300,8 +317,25 @@ internal class OrderProducts
                         Console.WriteLine($"Credit Card New Balance {selectedCard.CreditCardBalance}$");
                         Console.WriteLine($"Restaurant New Balance {restaurant.RestaurantBalance}$");
                         LineLong();
-                        // add order status logic
-                        // add if product has multiple restaurants
+
+
+                        Task.Run(() =>
+                        {
+                            Thread.Sleep(15000);
+                            var order = _context.Orders.Find(newOrder.Id);
+                            if (order != null && order.OrderStatus == ORDER_ENUM.PENDING.ToString())
+                            {
+                                order.OrderStatus = ORDER_ENUM.PROCESSING.ToString();
+                                _context.SaveChanges();                         
+                            }
+                            Thread.Sleep(600000);
+                            order = _context.Orders.Find(newOrder.Id); 
+                            if (order != null && order.OrderStatus == ORDER_ENUM.PROCESSING.ToString())
+                            {
+                                order.OrderStatus = ORDER_ENUM.DELIVERED.ToString();
+                                _context.SaveChanges();
+                            }
+                        });
                         // add file sending
                     }
                     catch (Exception ex)
