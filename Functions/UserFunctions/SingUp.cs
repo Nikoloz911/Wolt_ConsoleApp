@@ -357,7 +357,7 @@ internal class SingUp
                                         Line();
                                         Console.WriteLine($"User {FirstName} has Registered Successfully!");
                                         Line();
-                                        SmtpService.RegistrationEmailSender(Email, FirstName);
+                                        SmtpUser.RegistrationEmailSender(Email, FirstName);
                                     }
                                 }
                             }

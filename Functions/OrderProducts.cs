@@ -4,6 +4,7 @@ using Wolt_ConsoleApp.Validators;
 using Wolt_ConsoleApp.Enums;
 using Wolt_ConsoleApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Wolt_ConsoleApp.SMTP;
 namespace Wolt_ConsoleApp.Functions;
 
 internal class OrderProducts
@@ -319,6 +320,29 @@ internal class OrderProducts
                         LineLong();
 
 
+                        string filePath = $"Order_{newOrder.Id}.txt"; 
+                        using (StreamWriter writer = new StreamWriter(filePath))
+                        {
+                            writer.WriteLine($"Order ID: {newOrder.Id}");
+                            writer.WriteLine($"User ID: {newOrder.UserId}");
+                            writer.WriteLine($"Restaurant ID: {newOrder.RestaurantId}");
+                            writer.WriteLine($"Order Status: {newOrder.OrderStatus}");
+                            writer.WriteLine($"Total Amount: {totalAmount}$");
+                            writer.WriteLine($"Order Date: {DateTime.Now}");
+                            writer.WriteLine("Order Items:");
+                            foreach (var item in newOrder.OrderItems)
+                            {
+                                writer.WriteLine($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$");
+                            }
+                        }
+                      
+                        var userDetails = _context.Users
+                            .Include(u => u.UserDetails)
+                            .FirstOrDefault(u => u.Id == user.Id);
+
+                        string userEmail = userDetails?.UserDetails.UserEmail; 
+                        SmtpOrder.SendOrderEmail(userEmail, filePath);
+
                         Task.Run(() =>
                         {
                             Thread.Sleep(15000);
@@ -336,7 +360,6 @@ internal class OrderProducts
                                 _context.SaveChanges();
                             }
                         });
-                        // add file sending
                     }
                     catch (Exception ex)
                     {
