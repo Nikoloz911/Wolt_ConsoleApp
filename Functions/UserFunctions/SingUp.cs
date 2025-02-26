@@ -9,24 +9,9 @@ using System.Text.RegularExpressions;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class SingUp
 {
-    public static void Clear()
-    {
-        Console.Clear();
-    }
-    public static void InvalidChoice()
-    {
-        Clear();
-        Line();
-        Console.WriteLine("Invalid choice!");
-        Line();
-    }
-    public static int Line()
-    {
-        int length = 55;
-        string dashLine = new string('-', length);
-        Console.WriteLine(dashLine);
-        return length;
-    }
+    public static void Clear() => Console.Clear();
+    public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+    public static void InvalidChoice() { Clear(); Line(); Console.WriteLine("Invalid choice!"); Line(); }
 
     public static void UserSignUp()
     {
@@ -78,7 +63,7 @@ internal class SingUp
                 {
                     Clear();
                     Line();
-                    Console.WriteLine($"User Withgvvvvvvvvvffffffffffffffffffffffff='{FirstName}' Name Already Exists");
+                    Console.WriteLine($"User '{FirstName}' Name Already Exists");
                     Line();
                     Console.WriteLine("1. Try Again");
                     Console.WriteLine("2. Exit Registartion");
@@ -347,6 +332,11 @@ internal class SingUp
                                         Clear();                                        
                                         string Userpassword = passwordInput.ToString();
                                         string HashedPassword = BCrypt.Net.BCrypt.HashPassword(Userpassword);
+                                        var allUsers = _context.Users.ToList();
+                                        foreach(var user in allUsers)
+                                        {
+                                            user.IsActive = false;
+                                        }
                                         User newUser = new User
                                         {
                                             UserName = FirstName, 
@@ -367,7 +357,7 @@ internal class SingUp
                                         Line();
                                         Console.WriteLine($"User {FirstName} has Registered Successfully!");
                                         Line();
-                                        SmtpService.RegistrationEmailSender(Email, FirstName);
+                                        SmtpUser.RegistrationEmailSender(Email, FirstName);
                                     }
                                 }
                             }

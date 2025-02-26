@@ -12,7 +12,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
         public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
         public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
 
-        public static void EditProductToDatabase()
+        public static bool EditProductToDatabase()
         {
             while (true)
             {
@@ -22,7 +22,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 if (string.IsNullOrEmpty(productName))
                 {
                     ShowMessage("Product Name cannot be empty.");
-                    if (!AskTryAgain()) return;
+                    if (!AskTryAgain()) return false;
                     continue;
                 }
                 var matchingProducts = _context.Products.Where(p => p.ProductName.ToLower() == productName.ToLower()).ToList();
@@ -30,7 +30,7 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 {
                     ShowMessage("No product found with that name.");
                     ShowAllProducts();
-                    if (!AskTryAgain()) return;
+                    if (!AskTryAgain()) return false;
                     continue;
                 }
                 Product selectedProduct;
@@ -92,10 +92,11 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 else
                 {
                     ShowMessage("Invalid choice.");
-                    if (!AskTryAgain()) return;
+                    if (!AskTryAgain()) return true;
                 }
                 break;
             }
+            return true;
         }
         // Edit Product Name with validation
         private static void EditProductName(Product selectedProduct)

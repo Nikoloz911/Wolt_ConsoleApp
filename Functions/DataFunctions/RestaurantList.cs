@@ -6,7 +6,7 @@ internal class RestaurantList
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-    public static void ShowRestaurantList()
+    public static bool ShowRestaurantList()
     {
         using DataContext _context = new DataContext();
         var restaurants = _context.Restaurants
@@ -18,7 +18,7 @@ internal class RestaurantList
             Line();
             Console.WriteLine("No restaurants available.");
             Line();
-            return;
+            return false;
         }
         Clear();
         LineLong();
@@ -41,5 +41,6 @@ internal class RestaurantList
             Console.ResetColor();
         }
         LineLong();
+        return true;
     }
 }

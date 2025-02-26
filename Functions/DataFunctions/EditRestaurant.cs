@@ -10,7 +10,7 @@ internal class EditRestaurant
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-    public static void EditRestaurantVoid()
+    public static bool EditRestaurantVoid()
     {
         while (true)
         {
@@ -20,7 +20,7 @@ internal class EditRestaurant
             if (string.IsNullOrEmpty(restaurantName))
             {
                 ShowMessage("Restaurant Name cannot be empty.");
-                if (!AskTryAgain()) return;
+                if (!AskTryAgain()) return false;
                 continue;
             }
             var matchingRestaurants = _context.Restaurants
@@ -30,7 +30,7 @@ internal class EditRestaurant
             {
                 ShowMessage("No restaurant found with that name.");
                 ShowAllRestaurants();
-                if (!AskTryAgain()) return;
+                if (!AskTryAgain()) return false;
                 continue;
             }
             Restaurants selectedRestaurant = matchingRestaurants.Count == 1 ? matchingRestaurants.First() : matchingRestaurants.First();
@@ -62,11 +62,12 @@ internal class EditRestaurant
             else
             {
                 ShowMessage("Invalid choice.");
-                if (!AskTryAgain()) return;
+                if (!AskTryAgain()) return true;
                 continue;
             }
             break; 
         }
+        return true;
     }
 
     // Edit Restaurant Name
@@ -247,7 +248,9 @@ internal class EditRestaurant
         Console.WriteLine("2. Main Menu");
         string choice = Console.ReadLine();
         Clear();
-        return choice == "1";
+        if(choice == "1") return true;
+        else if (choice == "2") return false;
+        else return false;
     }
 }
 
