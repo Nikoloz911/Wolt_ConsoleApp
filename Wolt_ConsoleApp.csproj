@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Functions\LinqFunctions\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
