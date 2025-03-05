@@ -14,31 +14,31 @@ internal class Analytics
     public static void AnalyticsVoid()
     {
         Clear();
-        WriteColoredLine("1. Sort Users By Name", ConsoleColor.Blue);
-        WriteColoredLine("2. Sort Users By ID", ConsoleColor.Blue);
-        WriteColoredLine("3. Sort Users By Account Creation Date", ConsoleColor.Blue);
-        WriteColoredLine("4. Sort Users By Active Status", ConsoleColor.Blue);
-        WriteColoredLine("5. Sort Users By Wolt Plus Membership", ConsoleColor.Blue);
-        WriteColoredLine("6. Sort Users By Number of Linked Credit Cards", ConsoleColor.Blue);
-        WriteColoredLine("7. Sort Users By Total Credit Card Balance", ConsoleColor.Blue);
-        WriteColoredLine("8. Sort Users By Number of Payments Made", ConsoleColor.Blue);
-        WriteColoredLine("9. Sort Users By Total Ordered Products", ConsoleColor.Blue);
+        WriteColoredLine("1. Sort Users By Name", ConsoleColor.Green);
+        WriteColoredLine("2. Sort Users By ID", ConsoleColor.Green);
+        WriteColoredLine("3. Sort Users By Account Creation Date", ConsoleColor.Green);
+        WriteColoredLine("4. Sort Users By Active Status", ConsoleColor.Green);
+        WriteColoredLine("5. Sort Users By Wolt Plus Membership", ConsoleColor.Green);
+        WriteColoredLine("6. Sort Users By Number of Linked Credit Cards", ConsoleColor.Green);
+        WriteColoredLine("7. Sort Users By Total Credit Card Balance", ConsoleColor.Green);
+        WriteColoredLine("8. Sort Users By Number of Payments Made", ConsoleColor.Green);
+        WriteColoredLine("9. Sort Users By Total Ordered Products", ConsoleColor.Green);
 
-        WriteColoredLine("10. Sort Credit Cards By Expiry Date", ConsoleColor.Green);
-        WriteColoredLine("11. Sort Credit Cards By Available Balance", ConsoleColor.Green);
-        WriteColoredLine("12. Sort Credit Cards By Number of Transactions", ConsoleColor.Green);
+        WriteColoredLine("10. Sort Credit Cards By Expiry Date", ConsoleColor.Yellow);
+        WriteColoredLine("11. Sort Credit Cards By Available Balance", ConsoleColor.Yellow);
+        WriteColoredLine("12. Sort Credit Cards By Number of Transactions", ConsoleColor.Yellow);
 
-        WriteColoredLine("13. Sort Payments By Total Amount", ConsoleColor.Cyan);
-        WriteColoredLine("14. Sort Payments By Payment Status", ConsoleColor.Cyan);
+        WriteColoredLine("13. Sort Payments By Total Amount", ConsoleColor.Green);
+        WriteColoredLine("14. Sort Payments By Payment Status", ConsoleColor.Green);
 
-        WriteColoredLine("15. Sort Orders By Number of Users", ConsoleColor.Red);
-        WriteColoredLine("16. Sort Orders By Number of Restaurants Involved", ConsoleColor.Red);
-        WriteColoredLine("17. Sort Orders By Status", ConsoleColor.Red);
+        WriteColoredLine("15. Sort Orders By Number of Users", ConsoleColor.Yellow);
+        WriteColoredLine("16. Sort Orders By Number of Restaurants Involved", ConsoleColor.Yellow);
+        WriteColoredLine("17. Sort Orders By Status", ConsoleColor.Yellow);
 
-        WriteColoredLine("18. Sort Order Items By Number of Products Included", ConsoleColor.Magenta);
-        WriteColoredLine("19. Sort Order Items By Total Price", ConsoleColor.Magenta);
-        WriteColoredLine("20. Sort Order Items By Total Quantity", ConsoleColor.Magenta);
-        WriteColoredLine("21. Sort Order Items By Order Date", ConsoleColor.Magenta);
+        WriteColoredLine("18. Sort Order Items By Number of Products Included", ConsoleColor.Green);
+        WriteColoredLine("19. Sort Order Items By Total Price", ConsoleColor.Green);
+        WriteColoredLine("20. Sort Order Items By Total Quantity", ConsoleColor.Green);
+        WriteColoredLine("21. Sort Order Items By Order Date", ConsoleColor.Green);
 
         WriteColoredLine("22. Sort Products By Associated Restaurants", ConsoleColor.Yellow);
         WriteColoredLine("23. Sort Products By Availability Status", ConsoleColor.Yellow);
@@ -55,22 +55,31 @@ internal class Analytics
         switch (choice)
         {
             case "1":
+                LinqFunctions.All_LINQ.SortUsersByName();
                 break;
             case "2":
+                LinqFunctions.All_LINQ.SortUsersById();
                 break;
             case "3":
+                LinqFunctions.All_LINQ.SortUsersByUserCreatedDate();
                 break;
             case "4":
+                LinqFunctions.All_LINQ.SortUsersByActiveStatus();
                 break;
             case "5":
+                LinqFunctions.All_LINQ.SortUsersByWoltPlusSubscription();
                 break;
             case "6":
+                LinqFunctions.All_LINQ.SortUsersByLinkedCreditCards();
                 break;
             case "7":
+                LinqFunctions.All_LINQ.SortUsersByCreditCardsBalance();
                 break;
             case "8":
+                LinqFunctions.All_LINQ.SortUsersByTotalPayments();
                 break;
             case "9":
+                LinqFunctions.All_LINQ.SortUsersByOrderedProducts();
                 break;
             case "10":
                 break;
