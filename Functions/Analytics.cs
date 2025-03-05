@@ -25,30 +25,29 @@ internal class Analytics
         WriteColoredLine("9. Sort Users By Total Ordered Products", ConsoleColor.Green);
 
         WriteColoredLine("10. Sort Credit Cards By Expiry Date", ConsoleColor.Yellow);
-        WriteColoredLine("11. Sort Credit Cards By Available Balance", ConsoleColor.Yellow);
+        WriteColoredLine("11. Sort Credit Cards By Balance", ConsoleColor.Yellow);
         WriteColoredLine("12. Sort Credit Cards By Number of Transactions", ConsoleColor.Yellow);
 
         WriteColoredLine("13. Sort Payments By Total Amount", ConsoleColor.Green);
         WriteColoredLine("14. Sort Payments By Payment Status", ConsoleColor.Green);
 
-        WriteColoredLine("15. Sort Orders By Number of Users", ConsoleColor.Yellow);
-        WriteColoredLine("16. Sort Orders By Number of Restaurants Involved", ConsoleColor.Yellow);
+        WriteColoredLine("15. Sort Orders By Users", ConsoleColor.Yellow);
+        WriteColoredLine("16. Sort Orders By Restaurants", ConsoleColor.Yellow);
         WriteColoredLine("17. Sort Orders By Status", ConsoleColor.Yellow);
 
-        WriteColoredLine("18. Sort Order Items By Number of Products Included", ConsoleColor.Green);
+        WriteColoredLine("18. Sort Order Items By Products Included", ConsoleColor.Green);
         WriteColoredLine("19. Sort Order Items By Total Price", ConsoleColor.Green);
         WriteColoredLine("20. Sort Order Items By Total Quantity", ConsoleColor.Green);
-        WriteColoredLine("21. Sort Order Items By Order Date", ConsoleColor.Green);
 
-        WriteColoredLine("22. Sort Products By Associated Restaurants", ConsoleColor.Yellow);
-        WriteColoredLine("23. Sort Products By Availability Status", ConsoleColor.Yellow);
-        WriteColoredLine("24. Sort Products By Stock Quantity", ConsoleColor.Yellow);
-        WriteColoredLine("25. Sort Products By Price", ConsoleColor.Yellow);
+        WriteColoredLine("21. Sort Products By Associated Restaurants", ConsoleColor.Yellow);
+        WriteColoredLine("22. Sort Products By Availability Status", ConsoleColor.Yellow);
+        WriteColoredLine("23. Sort Products By Stock Quantity", ConsoleColor.Yellow);
+        WriteColoredLine("24. Sort Products By Price", ConsoleColor.Yellow);
 
-        WriteColoredLine("26. Sort Restaurants By Account Balance", ConsoleColor.Green);
-        WriteColoredLine("27. Sort Restaurants By Rating", ConsoleColor.Green);
-        WriteColoredLine("28. Sort Restaurants By Delivery Availability", ConsoleColor.Green);
-        WriteColoredLine("29. Sort Restaurants By Number of Orders Received", ConsoleColor.Green);
+        WriteColoredLine("25. Sort Restaurants By Account Balance", ConsoleColor.Green);
+        WriteColoredLine("26. Sort Restaurants By Rating", ConsoleColor.Green);
+        WriteColoredLine("27. Sort Restaurants By Delivery Availability", ConsoleColor.Green);
+        WriteColoredLine("28. Sort Restaurants By Number of Orders Received", ConsoleColor.Green);
 
         string choice = Console.ReadLine();
         Clear();
@@ -82,26 +81,37 @@ internal class Analytics
                 LinqFunctions.All_LINQ.SortUsersByOrderedProducts();
                 break;
             case "10":
+                LinqFunctions.All_LINQ.SortCreditCardsByExpiryDate();
                 break;
             case "11":
+                LinqFunctions.All_LINQ.SortCreditCardsByBalance();
                 break;
             case "12":
+                LinqFunctions.All_LINQ.SortCreditCardsByPayments();
                 break;
             case "13":
+                LinqFunctions.All_LINQ.SortPaymentsByTotalAmount();
                 break;
             case "14":
+                LinqFunctions.All_LINQ.SortPaymentsByStatus();
                 break;
             case "15":
+                LinqFunctions.All_LINQ.SortOrdersByUsers();
                 break;
             case "16":
+                LinqFunctions.All_LINQ.SortOrdersByRestaurants();
                 break;
             case "17":
+                LinqFunctions.All_LINQ.SortOrdersByStatus();
                 break;
             case "18":
+                LinqFunctions.All_LINQ.SortOrderItemsByProducts();
                 break;
             case "19":
+                LinqFunctions.All_LINQ.SortOrderItemsByTotalPrice();
                 break;
             case "20":
+                LinqFunctions.All_LINQ.SortOrderItemsByQuantity();
                 break;
             case "21":
                 break;
@@ -118,9 +128,7 @@ internal class Analytics
             case "27":
                 break;
             case "28":
-                break;
-            case "29":
-                break;
+                break;    
             default:
                 Line();
                 WriteColoredLine("Invalid choice!", ConsoleColor.Red);
