@@ -24,7 +24,8 @@ internal class UserManagement
             Console.WriteLine("6. Credit Card Information");
             Console.WriteLine("7. Add Balance");
             Console.WriteLine("8. Purchase Wolt+");
-            Console.WriteLine("9. Main Menu");
+            Console.WriteLine("9. Cancel WoltPlus Subscription");
+            Console.WriteLine("10. Main Menu");
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -137,6 +138,9 @@ internal class UserManagement
                     WoltPlus.PurchaseWoltPlus();
                     break;
                 case "9":
+                    RemoveWoltPlus.UnpurchaseWoltPlus();
+                    break;
+                case "10":
                     Clear();
                     MainMenu = true; 
                     return true;

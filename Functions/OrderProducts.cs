@@ -319,7 +319,7 @@ internal class OrderProducts
                         Console.WriteLine($"Restaurant New Balance {restaurant.RestaurantBalance}$");
                         LineLong();
 
-
+                        /// TXT FILE MAKE  /// TXT FILE MAKE  /// TXT FILE MAKE
                         string filePath = $"Order_{newOrder.Id}.txt"; 
                         using (StreamWriter writer = new StreamWriter(filePath))
                         {
@@ -335,14 +335,28 @@ internal class OrderProducts
                                 writer.WriteLine($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$");
                             }
                         }
-                      
+                        /// TXT FILE MAKE  /// TXT FILE MAKE  /// TXT FILE MAKE
+
+                        // Get user details for email
                         var userDetails = _context.Users
                             .Include(u => u.UserDetails)
                             .FirstOrDefault(u => u.Id == user.Id);
 
-                        string userEmail = userDetails?.UserDetails.UserEmail; 
-                        SmtpOrder.SendOrderEmail(userEmail, filePath);
+                        string userEmail = userDetails?.UserDetails.UserEmail;
+                        string userName = $"{userDetails?.UserName}";
 
+                        // Get restaurant name
+                        var restaurantFind = _context.Restaurants.Find(foundProduct.RestaurantsId);
+                        string restaurantName = restaurantFind.RestaurantName;
+
+                        /// SEND EMAIL  /// SEND EMAIL  /// SEND EMAIL
+                        SmtpOrder.SendOrderEmail(
+                            userEmail,
+                            filePath,
+                            userName,
+                            restaurantName,
+                            selectedCard.CreditCardNumber);
+                        /// ORDER STATUS CHANGE  /// ORDER STATUS CHANGE
                         Task.Run(() =>
                         {
                             Thread.Sleep(15000);
@@ -360,6 +374,7 @@ internal class OrderProducts
                                 _context.SaveChanges();
                             }
                         });
+                        /// ORDER STATUS CHANGE  /// ORDER STATUS CHANGE
                     }
                     catch (Exception ex)
                     {
