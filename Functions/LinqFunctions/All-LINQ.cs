@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wolt_ConsoleApp.Data;
+using Wolt_ConsoleApp.Models;
 
 namespace Wolt_ConsoleApp.Functions.LinqFunctions;
 internal class All_LINQ
@@ -8,6 +9,11 @@ internal class All_LINQ
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 115)); return 115; }
+    public static void NoDataFound()
+    {
+        Console.WriteLine("No Data found in Database!");
+        return;
+    }
 
     // ALL LINQ FUNCTIONS
 
@@ -22,6 +28,10 @@ internal class All_LINQ
             .OrderBy(u => u.UserName)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -46,6 +56,10 @@ internal class All_LINQ
             .OrderBy(u => u.Id)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -70,6 +84,10 @@ internal class All_LINQ
             .OrderBy(u => u.UserCreated)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -94,6 +112,10 @@ internal class All_LINQ
             .OrderBy(u => u.IsActive)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -118,6 +140,10 @@ internal class All_LINQ
             .OrderBy(u => u.HasWoltPlus)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -142,6 +168,10 @@ internal class All_LINQ
             .OrderByDescending(u => u.CreditCards.Count)
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -166,6 +196,10 @@ internal class All_LINQ
             .OrderByDescending(u => u.CreditCards.Sum(c => c.CreditCardBalance))
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -191,6 +225,10 @@ internal class All_LINQ
             .OrderByDescending(u => u.Payments.Sum(p => p.TotalAmount))
             .ToList();
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -219,6 +257,10 @@ internal class All_LINQ
             .OrderByDescending(u => u.Orders.Count)
             .ToList(); 
         LineLong();
+        if (users.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var user in users)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -253,6 +295,10 @@ internal class All_LINQ
             .OrderBy(c => c.CreditCardExpiryDate)
             .ToList();
         LineLong();
+        if (creditCards.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var creditCard in creditCards)
         {
             string cleanCardNumber = creditCard.CreditCardNumber.Replace(" ", "");
@@ -280,6 +326,10 @@ internal class All_LINQ
             .OrderByDescending(c => c.CreditCardBalance)
             .ToList();
         LineLong();
+        if (creditCards.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var creditCard in creditCards)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -303,6 +353,10 @@ internal class All_LINQ
             .OrderBy(c => c.CreditCardBalance)
             .ToList();
         LineLong();
+        if (creditCards.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var creditCard in creditCards)
         {
             int paymentCount = _context.Payments.Count(p => p.CreditCardId == creditCard.Id);
@@ -334,6 +388,10 @@ internal class All_LINQ
             .OrderByDescending(p => p.TotalAmount)
             .ToList();
         LineLong();
+        if (payments.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var payment in payments)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -357,6 +415,10 @@ internal class All_LINQ
             .OrderByDescending(p => p.PaymentStatus)
             .ToList();
         LineLong();
+        if (payments.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var payment in payments)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -386,6 +448,10 @@ internal class All_LINQ
             .OrderBy(o => o.UserId)
             .ToList();
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var order in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -419,6 +485,10 @@ internal class All_LINQ
                 .FirstOrDefault())
             .ToList();
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var order in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -454,6 +524,10 @@ internal class All_LINQ
             .OrderBy(o => o.OrderStatus) 
             .ToList();
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var order in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -485,8 +559,11 @@ internal class All_LINQ
        .Include(oi => oi.Product)
        .OrderBy(oi => oi.Product.ProductName)
        .ToList();
-
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var orderItem in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -517,6 +594,10 @@ internal class All_LINQ
             .OrderByDescending(oi => oi.TotalPrice)
             .ToList();
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var orderItem in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -548,6 +629,10 @@ internal class All_LINQ
             .OrderByDescending(oi => oi.Quantity)
             .ToList();
         LineLong();
+        if (orders.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var orderItem in orders)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -578,6 +663,11 @@ internal class All_LINQ
             .Include(r => r.Restaurants)
             .OrderBy(p => p.Restaurants.RestaurantName)
             .ToList();
+        if (products.Count == 0)
+        {
+            LineLong();
+            NoDataFound();
+        }
         int pageSize = 20;
         int currentIndex = 0;
         while (currentIndex < products.Count)
@@ -625,6 +715,11 @@ internal class All_LINQ
             .Include(r => r.Restaurants)
             .OrderBy(p => p.IsAvailable)
             .ToList();
+        if (products.Count == 0)
+        {
+            LineLong();
+            NoDataFound();
+        }
         int pageSize = 20;
         int currentIndex = 0;
         while (currentIndex < products.Count)
@@ -676,6 +771,11 @@ internal class All_LINQ
             .Include(r => r.Restaurants)
             .OrderBy(p => p.ProductQuantity)
             .ToList();
+        if (products.Count == 0)
+        {
+            LineLong();
+            NoDataFound();
+        }
         int pageSize = 20;
         int currentIndex = 0;
         while (currentIndex < products.Count)
@@ -722,6 +822,11 @@ internal class All_LINQ
             .Include(r => r.Restaurants)
             .OrderBy(p => p.ProductPrice)
             .ToList();
+        if (products.Count == 0)
+        {
+            LineLong();
+            NoDataFound();
+        }
         int pageSize = 20;
         int currentIndex = 0;
         while (currentIndex < products.Count)
@@ -772,6 +877,10 @@ internal class All_LINQ
             .OrderByDescending(r => r.RestaurantBalance)
             .ToList();
         LineLong();
+        if (restaurants.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var restaurant in restaurants)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -794,6 +903,10 @@ internal class All_LINQ
             .OrderByDescending(r => r.Rating)
             .ToList();
         LineLong();
+        if (restaurants.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var restaurant in restaurants)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -816,6 +929,10 @@ internal class All_LINQ
             .OrderByDescending(r => r.DeliveryAvailable)
             .ToList();
         LineLong();
+        if (restaurants.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var restaurant in restaurants)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -839,6 +956,10 @@ internal class All_LINQ
             .OrderByDescending(r => r.DeliveryAvailable)
             .ToList();
         LineLong();
+        if (restaurants.Count == 0)
+        {
+            NoDataFound();
+        }
         foreach (var restaurant in restaurants)
         {
             Console.ForegroundColor = ConsoleColor.Green;
