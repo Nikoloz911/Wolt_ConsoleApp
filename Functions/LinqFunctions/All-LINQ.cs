@@ -9,6 +9,7 @@ internal class All_LINQ
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 115)); return 115; }
 
+    // ALL LINQ FUNCTIONS
 
     /// SORT USERS /// SORT USERS /// SORT USERS /// SORT USERS /// SORT USERS 
     /// SORT USERS /// SORT USERS /// SORT USERS /// SORT USERS /// SORT USERS 
@@ -447,6 +448,8 @@ internal class All_LINQ
     {
         var orders = _context.Orders
             .Include(o => o.User) 
+            .Include(oi => oi.OrderItems)
+            .ThenInclude(a => a.Product)
             .Include(p => p.Payment)
             .OrderBy(o => o.OrderStatus) 
             .ToList();
@@ -566,4 +569,301 @@ internal class All_LINQ
     /// SORT ORDER ITEMS BY TOTAL QUANTITY   /// SORT ORDER ITEMS BY TOTAL QUANTITY
     /// SORT ORDER ITEMS /// SORT ORDER ITEMS /// SORT ORDER ITEMS
     /// SORT ORDER ITEMS /// SORT ORDER ITEMS /// SORT ORDER ITEMS
+    /// SORT PRODUCTS /// SORT PRODUCTS /// SORT PRODUCTS
+    /// SORT PRODUCTS /// SORT PRODUCTS /// SORT PRODUCTS
+    /// SORT PRODUCTS BY RESTAURANTS   /// SORT PRODUCTS BY RESTAURANTS
+    public static void SortProductsByRestaurantsName()
+    {
+        var products = _context.Products
+            .Include(r => r.Restaurants)
+            .OrderBy(p => p.Restaurants.RestaurantName)
+            .ToList();
+        int pageSize = 20;
+        int currentIndex = 0;
+        while (currentIndex < products.Count)
+        {
+            Clear(); 
+            LineLong();
+            for (int i = currentIndex; i < currentIndex + pageSize && i < products.Count; i++)
+            {
+                var product = products[i];
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"Product Name: {product.ProductName}, ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write($"Price: {product.ProductPrice}, ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write($"Quantity: {product.ProductQuantity}, ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"Restaurant: {product.Restaurants.RestaurantName}");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            LineLong();
+            if (currentIndex + pageSize >= products.Count)
+            {
+                break;
+            }
+            Console.WriteLine("Type 'N' to show more or press Enter to exit:");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+            if (input == "N")
+            {
+                currentIndex += pageSize;
+            }
+            else
+            {
+                Clear();
+                break; 
+            }
+        }
+    }
+
+    /// SORT PRODUCTS BY RESTAURANTS   /// SORT PRODUCTS BY RESTAURANTS
+    /// SORT PRODUCTS BY AVAILABLE STATUS   /// SORT PRODUCTS BY AVAILABLE STATUS
+    public static void SortProductsByIsAvailable()
+    {
+        var products = _context.Products
+            .Include(r => r.Restaurants)
+            .OrderBy(p => p.IsAvailable)
+            .ToList();
+        int pageSize = 20;
+        int currentIndex = 0;
+        while (currentIndex < products.Count)
+        {
+            Clear();
+            LineLong();
+            for (int i = currentIndex; i < currentIndex + pageSize && i < products.Count; i++)
+            {
+                var product = products[i];
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"Product Name: {product.ProductName}, ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write($"Price: {product.ProductPrice}, ");
+                if (product.IsAvailable)
+                    Console.ForegroundColor = ConsoleColor.Green;
+                else
+                    Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"Is Available: {(product.IsAvailable ? "Available" : "Unavailable")}, ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write($"Quantity: {product.ProductQuantity}, ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"Restaurant: {product.Restaurants.RestaurantName}");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            LineLong();
+            if (currentIndex + pageSize >= products.Count)
+            {
+                break;
+            }
+            Console.WriteLine("Type 'N' to show more or press Enter to exit:");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+            if (input == "N")
+            {
+                currentIndex += pageSize;
+            }
+            else
+            {
+                Clear();
+                break;
+            }
+        }
+    }
+    /// SORT PRODUCTS BY AVAILABLE STATUS   /// SORT PRODUCTS BY AVAILABLE STATUS
+    /// SORT PRODUCTS BY QUANTITY   /// SORT PRODUCTS BY QUANTITY
+    public static void SortProductsByQuantity()
+    {
+        var products = _context.Products
+            .Include(r => r.Restaurants)
+            .OrderBy(p => p.ProductQuantity)
+            .ToList();
+        int pageSize = 20;
+        int currentIndex = 0;
+        while (currentIndex < products.Count)
+        {
+            Clear();
+            LineLong();
+            for (int i = currentIndex; i < currentIndex + pageSize && i < products.Count; i++)
+            {
+                var product = products[i];
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"Product Name: {product.ProductName}, ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write($"Price: {product.ProductPrice}, ");
+                Console.ForegroundColor = product.ProductQuantity == 0.00m ? ConsoleColor.Red : ConsoleColor.Green;
+                Console.Write($"Quantity: {product.ProductQuantity}, ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"Restaurant: {product.Restaurants.RestaurantName}");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            LineLong();
+            if (currentIndex + pageSize >= products.Count)
+            {
+                break;
+            }
+            Console.WriteLine("Type 'N' to show more or press Enter to exit:");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+            if (input == "N")
+            {
+                currentIndex += pageSize;
+            }
+            else
+            {
+                Clear();
+                break;
+            }
+        }
+    }
+    /// SORT PRODUCTS BY QUANTITY   /// SORT PRODUCTS BY QUANTITY
+    /// SORT PRODUCTS BY PRICE   /// SORT PRODUCTS BY PRICE
+    public static void SortProductsByPrice()
+    {
+        var products = _context.Products
+            .Include(r => r.Restaurants)
+            .OrderBy(p => p.ProductPrice)
+            .ToList();
+        int pageSize = 20;
+        int currentIndex = 0;
+        while (currentIndex < products.Count)
+        {
+            Clear();
+            LineLong();
+            for (int i = currentIndex; i < currentIndex + pageSize && i < products.Count; i++)
+            {
+                var product = products[i];
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"Product Name: {product.ProductName}, ");
+                Console.ForegroundColor = product.ProductPrice == 0.00m ? ConsoleColor.Red : ConsoleColor.Green;
+                Console.Write($"Price: {product.ProductPrice}, ");
+                Console.ForegroundColor = product.ProductQuantity == 0.00m ? ConsoleColor.Red : ConsoleColor.Green;
+                Console.Write($"Quantity: {product.ProductQuantity}, ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"Restaurant: {product.Restaurants.RestaurantName}");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            LineLong();
+            if (currentIndex + pageSize >= products.Count)
+            {
+                break;
+            }
+            Console.WriteLine("Type 'N' to show more or press Enter to exit:");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+            if (input == "N")
+            {
+                currentIndex += pageSize;
+            }
+            else
+            {
+                Clear();
+                break;
+            }
+        }
+    }
+    /// SORT PRODUCTS BY PRICE   /// SORT PRODUCTS BY PRICE
+    /// SORT PRODUCTS /// SORT PRODUCTS /// SORT PRODUCTS
+    /// SORT PRODUCTS /// SORT PRODUCTS /// SORT PRODUCTS
+    /// SORT RESTAURANTS /// SORT RESTAURANTS /// SORT RESTAURANTS
+    /// SORT RESTAURANTS /// SORT RESTAURANTS /// SORT RESTAURANTS
+    /// SORT RESTAURANTS BY ACCOUNT BALANCE   /// SORT RESTAURANTS BY ACCOUNT BALANCE
+    public static void SortRestaurantsByAccountBalance()
+    {
+        var restaurants = _context.Restaurants
+            .OrderByDescending(r => r.RestaurantBalance)
+            .ToList();
+        LineLong();
+        foreach (var restaurant in restaurants)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"Restaurant Name: {restaurant.RestaurantName}, ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"Balance: {restaurant.RestaurantBalance}, ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"Rating: {restaurant.Rating}, ");
+            Console.ForegroundColor = restaurant.DeliveryAvailable ? ConsoleColor.Green : ConsoleColor.Red;
+            Console.WriteLine($"Delivery: {restaurant.DeliveryAvailable}");
+            Console.ResetColor();
+        }
+        LineLong();
+    }
+    /// SORT RESTAURANTS BY ACCOUNT BALANCE   /// SORT RESTAURANTS BY ACCOUNT BALANCE
+    /// SORT RESTAURANTS BY RATING   /// SORT RESTAURANTS BY RATING
+    public static void SortRestaurantsByRating()
+    {
+        var restaurants = _context.Restaurants
+            .OrderByDescending(r => r.Rating)
+            .ToList();
+        LineLong();
+        foreach (var restaurant in restaurants)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"Restaurant Name: {restaurant.RestaurantName}, ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"Balance: {restaurant.RestaurantBalance}, ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"Rating: {restaurant.Rating}, ");
+            Console.ForegroundColor = restaurant.DeliveryAvailable ? ConsoleColor.Green : ConsoleColor.Red;
+            Console.WriteLine($"Delivery: {restaurant.DeliveryAvailable}");
+            Console.ResetColor();
+        }
+        LineLong();
+    }
+    /// SORT RESTAURANTS BY RATING   /// SORT RESTAURANTS BY RATING
+    /// SORT RESTAURANTS BY DELIVERY AVAILABILITY 
+    public static void SortRestaurantsByDeliveryAvailable()
+    {
+        var restaurants = _context.Restaurants
+            .OrderByDescending(r => r.DeliveryAvailable)
+            .ToList();
+        LineLong();
+        foreach (var restaurant in restaurants)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"Restaurant Name: {restaurant.RestaurantName}, ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"Balance: {restaurant.RestaurantBalance}, ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"Rating: {restaurant.Rating}, ");
+            Console.ForegroundColor = restaurant.DeliveryAvailable ? ConsoleColor.Green : ConsoleColor.Red;
+            Console.WriteLine($"Delivery: {restaurant.DeliveryAvailable}");
+            Console.ResetColor();
+        }
+        LineLong();
+    }
+    /// SORT RESTAURANTS BY DELIVERY AVAILABILITY
+    /// SORT RESTAURANTS BY NUMBER OF ORDERS RECEIVED
+    public static void SortRestaurantsByOrders()
+    {
+        var restaurants = _context.Restaurants
+            .Include(o => o.Orders)
+            .OrderByDescending(r => r.DeliveryAvailable)
+            .ToList();
+        LineLong();
+        foreach (var restaurant in restaurants)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"Restaurant Name: {restaurant.RestaurantName}, ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"Balance: {restaurant.RestaurantBalance}, ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"Rating: {restaurant.Rating}, ");
+            Console.ForegroundColor = restaurant.DeliveryAvailable ? ConsoleColor.Green : ConsoleColor.Red;
+            Console.Write($"Delivery: {restaurant.DeliveryAvailable}, ");
+            if (restaurant.Orders.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            Console.WriteLine($"Total Orders Recieved: {restaurant.Orders.Count}");
+            Console.ResetColor();
+        }
+        LineLong();
+    }
+    /// SORT RESTAURANTS BY NUMBER OF ORDERS RECEIVED
+    /// SORT RESTAURANTS /// SORT RESTAURANTS /// SORT RESTAURANTS
+    /// SORT RESTAURANTS /// SORT RESTAURANTS /// SORT RESTAURANTS
 }
+// ALL LINQ FUNCTIONS

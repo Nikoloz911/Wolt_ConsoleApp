@@ -114,20 +114,28 @@ internal class Analytics
                 LinqFunctions.All_LINQ.SortOrderItemsByQuantity();
                 break;
             case "21":
+                LinqFunctions.All_LINQ.SortProductsByRestaurantsName();
                 break;
             case "22":
+                LinqFunctions.All_LINQ.SortProductsByIsAvailable();
                 break;
             case "23":
+                LinqFunctions.All_LINQ.SortProductsByQuantity();
                 break;
             case "24":
+                LinqFunctions.All_LINQ.SortProductsByPrice();
                 break;
             case "25":
+                LinqFunctions.All_LINQ.SortRestaurantsByAccountBalance();
                 break;
             case "26":
+                LinqFunctions.All_LINQ.SortRestaurantsByRating();
                 break;
             case "27":
+                LinqFunctions.All_LINQ.SortRestaurantsByDeliveryAvailable();
                 break;
             case "28":
+                LinqFunctions.All_LINQ.SortRestaurantsByOrders();
                 break;    
             default:
                 Line();
