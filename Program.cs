@@ -14,7 +14,7 @@ while (running)
     Console.WriteLine("4. Order Details");
     Console.WriteLine("5. Analytics");
     Console.WriteLine("6. File Management");
-    Console.WriteLine("7. System Logs");
+    Console.WriteLine("7. System");
     Console.WriteLine("8. Delete Database Table");
     string choice = Console.ReadLine();
     if (choice == "1")
@@ -43,7 +43,7 @@ while (running)
     }
     else if (choice == "7")
     {
-        SystemLogs.SystemLogsVoid();
+        SystemFunction.SystemVoid();
     }
     else if (choice == "8")
     {
