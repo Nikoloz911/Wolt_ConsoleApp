@@ -1,5 +1,6 @@
 ﻿using Wolt_ConsoleApp.Data;
-using FluentValidation;
+using PdfSharpCore.Pdf;
+using PdfSharpCore.Drawing;
 using Wolt_ConsoleApp.Validators;
 using Wolt_ConsoleApp.Enums;
 using Wolt_ConsoleApp.Models;
@@ -331,26 +332,54 @@ internal class OrderProducts
                         Console.WriteLine($"Restaurant New Balance {restaurant.RestaurantBalance}$");
                         LineLong();
 
-                        /// TXT FILE MAKE  /// TXT FILE MAKE  /// TXT FILE MAKE
-                        string filePath = $"Order_{newOrder.Id}.txt"; 
-                        using (StreamWriter writer = new StreamWriter(filePath))
-                        {
-                            writer.WriteLine($"Order ID: {newOrder.Id}");
-                            writer.WriteLine($"User ID: {newOrder.UserId}");
-                            writer.WriteLine($"Restaurant ID: {newOrder.RestaurantId}");
-                            writer.WriteLine($"Order Status: {newOrder.OrderStatus}");
-                            writer.WriteLine($"Total Amount: {totalAmount}$");
-                            writer.WriteLine($"Order Date: {DateTime.Now}");
-                            writer.WriteLine("Order Items:");
-                            foreach (var item in newOrder.OrderItems)
-                            {
-                                writer.WriteLine($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$");
-                            }
-                        }
-                        /// TXT FILE MAKE  /// TXT FILE MAKE  /// TXT FILE MAKE
 
-                        // Get user details for email
-                        var userDetails = _context.Users
+                        // Create TXT file  // Create TXT file  // Create TXT file
+                        string txtFilePath = $"Order_{newOrder.Id}.txt";
+                         using (StreamWriter writer = new StreamWriter(txtFilePath))
+                         {
+                               writer.WriteLine($"Order ID: {newOrder.Id}");
+                               writer.WriteLine($"User ID: {newOrder.UserId}");
+                               writer.WriteLine($"Restaurant ID: {newOrder.RestaurantId}");
+                               writer.WriteLine($"Order Status: {newOrder.OrderStatus}");
+                               writer.WriteLine($"Total Amount: {totalAmount}$");
+                               writer.WriteLine($"Order Date: {DateTime.Now}");
+                               writer.WriteLine("Order Items:");
+                                   foreach (var item in newOrder.OrderItems)
+                                   {
+                                       writer.WriteLine($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$");
+                                   }
+                         }
+
+                        // Create PDF file   // Create PDF file   // Create PDF file
+                           string pdfFilePath = $"Order_{newOrder.Id}.pdf";
+                           PdfDocument document = new PdfDocument();
+                           document.Info.Title = $"Order_{newOrder.Id}";
+                            PdfPage page = document.AddPage();
+                            XGraphics gfx = XGraphics.FromPdfPage(page);
+                            XFont font = new XFont("Arial", 12, XFontStyle.Regular);
+                            int yPosition = 20;
+                             gfx.DrawString($"Order ID: {newOrder.Id}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString($"User ID: {newOrder.UserId}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString($"Restaurant ID: {newOrder.RestaurantId}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString($"Order Status: {newOrder.OrderStatus}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString($"Total Amount: {totalAmount}$", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString($"Order Date: {DateTime.Now}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                             gfx.DrawString("Order Items:", font, XBrushes.Black, new XPoint(20, yPosition));
+                             yPosition += 20;
+                        foreach (var item in newOrder.OrderItems)
+                        {
+                            gfx.DrawString($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$", font, XBrushes.Black, new XPoint(20, yPosition));
+                            yPosition += 20;
+                        }
+                         document.Save(pdfFilePath);
+                          // Get user details for email
+                         var userDetails = _context.Users
                             .Include(u => u.UserDetails)
                             .FirstOrDefault(u => u.Id == user.Id);
 
@@ -364,7 +393,8 @@ internal class OrderProducts
                         /// SEND EMAIL  /// SEND EMAIL  /// SEND EMAIL
                         SmtpOrder.SendOrderEmail(
                             userEmail,
-                            filePath,
+                            txtFilePath,
+                            pdfFilePath,
                             userName,
                             restaurantName,
                             selectedCard.CreditCardNumber);
