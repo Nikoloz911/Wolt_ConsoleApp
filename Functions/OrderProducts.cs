@@ -9,13 +9,25 @@ namespace Wolt_ConsoleApp.Functions;
 
 internal class OrderProducts
 {
+    public static readonly string filePath = "Orders.txt";
     public static DataContext _context = new DataContext();
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-
+    public static void WriteToFile(string data)
+    {
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
+        File.AppendAllText(filePath, data + Environment.NewLine);
+    }
     public static void Order()
     {
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
         var allProducts = _context.Products
             .Include(r => r.Restaurants)
             .ToList();
@@ -375,6 +387,9 @@ internal class OrderProducts
                             }
                         });
                         /// ORDER STATUS CHANGE  /// ORDER STATUS CHANGE
+                        // Write In File
+                        string orderDetails = $"Order ID: {newOrder.Id}, User ID: {newOrder.UserId}, Restaurant ID: {newOrder.RestaurantId}, Total Amount: {totalAmount}$, Date: {DateTime.Now}, Status: {newOrder.OrderStatus}";
+                        WriteToFile(orderDetails);
                     }
                     catch (Exception ex)
                     {

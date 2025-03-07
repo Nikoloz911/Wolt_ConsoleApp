@@ -103,8 +103,11 @@ internal class WoltPlus
                 Line();
                 Console.WriteLine($"Remaining Balance on Credit Card: {selectedCard.CreditCardBalance}");
                 Line();
-                validCardSelected = true; 
-                isAddedWoltPlus = true;  
+                validCardSelected = true;
+                isAddedWoltPlus = true;
+                // Write In File
+                string purchaseData = $"User: {user.UserName} {user.UserLastName} purchased WoltPlus at {DateTime.Now}";
+                UserManagement.WriteToFile(purchaseData);
             }
         }
     }

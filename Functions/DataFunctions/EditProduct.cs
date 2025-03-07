@@ -134,6 +134,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                     Console.WriteLine($"New Product Name: {newName}!");
                     LineLong();
                     _context.SaveChanges();
+                    // Write In File
+                    string changeProductName = $"Product Name Changed: Old Name: {selectedProduct.ProductName}, New Name: {newName}, Date: {DateTime.Now}";
+                    DataManagement.WriteToFile(changeProductName);
                     break;
                 }
             }
@@ -176,6 +179,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Console.WriteLine($"New Product Price: {newPrice}!");
                         LineLong();
                         _context.SaveChanges();
+                        // Write In File
+                        string changeProductPrice = $"Product Price Changed: New Price: {newPrice}, Old Price: {selectedProduct.ProductPrice}, Date: {DateTime.Now}";
+                        DataManagement.WriteToFile(changeProductPrice);
                         break;
                     }
                 }
@@ -218,6 +224,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         Console.WriteLine($"New Product Quantity: {newQuantity}!");
                         LineLong();
                         _context.SaveChanges();
+                        // Write In File
+                        string changeProductQuantity = $"Product Quantity Changed: New Quantity: {newQuantity}, Old Quantity: {selectedProduct.ProductQuantity}, Date: {DateTime.Now}";
+                        DataManagement.WriteToFile(changeProductQuantity);
                         break;
                     }
                 }
@@ -268,6 +277,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                     Console.WriteLine($"New Product Availability: {availability}!");
                     LineLong();
                     _context.SaveChanges();
+                    // Write In File
+                    string changeProductAvailability = $"Product Availability Changed: New Availability: {availability}, Old Availability: {selectedProduct.IsAvailable}, Date: {DateTime.Now}";
+                    DataManagement.WriteToFile(changeProductAvailability);
                     break;
                 }
             }

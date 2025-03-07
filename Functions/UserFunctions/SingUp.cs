@@ -320,6 +320,7 @@ internal class SingUp
                                                 Console.Write("*");
                                             }
                                         }
+                                        // Exit Loops
                                         Registered = true;
                                         IsValidUserName = true;
                                         IsValidUserLastName = true;
@@ -352,11 +353,16 @@ internal class SingUp
                                                 UserPhoneNumber = PhoneNumber
                                             }
                                         };
+                                        // Save Data To Database
                                         _context.Users.Add(newUser);
                                         _context.SaveChanges();
                                         Line();
                                         Console.WriteLine($"User {FirstName} has Registered Successfully!");
                                         Line();
+                                        // Write In File
+                                        string userData = $"User: {FirstName} {LastName}, Email: {Email}, Address: {Address}, Phone: {PhoneNumber}, Registered: {DateTime.Now}";
+                                        UserManagement.WriteToFile(userData);
+                                        // Send Email
                                         SmtpUser.RegistrationEmailSender(Email, FirstName);
                                     }
                                 }

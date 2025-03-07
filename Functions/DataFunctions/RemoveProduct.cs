@@ -35,6 +35,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                         _context.SaveChanges();
                         Line();
                         Console.WriteLine($"Product '{productName}' has been removed successfully.");
+                        // Write In File
+                        string productRemoved = $"Product Removed: Name: {productName}, Date: {DateTime.Now}";
+                        DataManagement.WriteToFile(productRemoved);
                         Line();
                         return true;
                     }

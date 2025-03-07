@@ -104,6 +104,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 Line();
                 Console.WriteLine("Restaurant Added Successfully!");
                 Line();
+                // Write In File
+                string restaurantData = $"Restaurant: {restaurantName}, Balance: {restaurantBalance}, Rating: {rating}, Delivery Available: {deliveryAvailable}, Added: {DateTime.Now}";
+                DataManagement.WriteToFileRestaurant(restaurantData);
                 return true; 
             }
         }

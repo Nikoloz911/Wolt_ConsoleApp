@@ -5,12 +5,37 @@ namespace Wolt_ConsoleApp.Functions
 {
     internal class DataManagement
     {
+        public static readonly string filePath = "Products.txt";
+        public static readonly string filePathRestaurant = "Restaurants.txt";
         public static void Clear() => Console.Clear();
         public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
         public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
-
+        public static void WriteToFile(string data)
+        {
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+            File.AppendAllText(filePath, data + Environment.NewLine);
+        }
+        public static void WriteToFileRestaurant(string data)
+        {
+            if (!File.Exists(filePathRestaurant))
+            {
+                File.Create(filePathRestaurant).Close();
+            }
+            File.AppendAllText(filePathRestaurant, data + Environment.NewLine);
+        }
         public static void DataManagementVoid()
         {
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+            if (!File.Exists(filePathRestaurant))
+            {
+                File.Create(filePathRestaurant).Close();
+            }
             DataContext _context = new DataContext();
             bool MainMenu = false;
             Clear();

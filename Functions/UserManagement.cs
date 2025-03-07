@@ -5,12 +5,25 @@ using Microsoft.EntityFrameworkCore;
 namespace Wolt_ConsoleApp.Functions;
 internal class UserManagement
 {
+    public static readonly string filePath = "User.txt";
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 120)); return 120; }
-
+    public static void WriteToFile(string data)
+    {
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
+        File.AppendAllText(filePath, data + Environment.NewLine);
+    }
     public static bool UserManagementVoid()
     {
+
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
         DataContext _context = new DataContext();
         bool MainMenu = false;
         Clear();

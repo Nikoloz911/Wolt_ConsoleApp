@@ -112,13 +112,18 @@ internal class AddBalance
                     var cardToUpdate = _context.CreditCards.SingleOrDefault(c => c.CreditCardNumber == selectedCard.CreditCardNumber);
                     if (cardToUpdate != null)
                     {
+                        decimal oldBalance = cardToUpdate.CreditCardBalance;
                         cardToUpdate.CreditCardBalance += balanceToAdd;
                         _context.SaveChanges();
                         Clear();
                         Line();
                         Console.WriteLine($"Successfully added {balanceToAdd} to {selectedCard.UserName}'s card. New balance: {cardToUpdate.CreditCardBalance}");
                         Line();
+                        // Write In File
+                        string balanceData = $"User: {selectedCard.UserName} added {balanceToAdd} to Credit Card, Old Balance: {oldBalance}, New Balance: {cardToUpdate.CreditCardBalance} at {DateTime.Now}";
+                        UserManagement.WriteToFile(balanceData);
                     }
+
                 }
             }
             else

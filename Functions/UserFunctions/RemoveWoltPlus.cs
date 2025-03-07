@@ -75,6 +75,9 @@ internal class RemoveWoltPlus
                     Line();
                     isRemovedWoltPlus = true;
                     validChoice = true;
+                    // Write In File
+                    string cancellationData = $"User: {user.UserName} {user.UserLastName} cancelled WoltPlus at {DateTime.Now}";
+                    UserManagement.WriteToFile(cancellationData);
                 }
                 else if (confirmChoice == "2")
                 {
