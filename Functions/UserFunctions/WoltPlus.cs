@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wolt_ConsoleApp.Data;
-using Wolt_ConsoleApp.Models;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class WoltPlus
 {

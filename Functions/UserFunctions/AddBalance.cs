@@ -1,5 +1,4 @@
-﻿using Wolt_ConsoleApp.Models;
-using Wolt_ConsoleApp.Data;
+﻿using Wolt_ConsoleApp.Data;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class AddBalance
 {

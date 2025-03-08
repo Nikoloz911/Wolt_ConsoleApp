@@ -19,7 +19,33 @@ internal class SystemFunction
         }
         else if(choice == "2")
         {
-            Console.WriteLine("");
+            Line();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("using Wolt_ConsoleApp.Data");
+            Console.WriteLine("using Wolt_ConsoleApp.Functions;");
+            Console.WriteLine("using Wolt_ConsoleApp.Models;");
+            Console.WriteLine("using Wolt_ConsoleApp.Enums"); 
+            Console.WriteLine("using Wolt_ConsoleApp.Validators");
+            Console.WriteLine("using Wolt_ConsoleApp.SMTP;");
+            Console.WriteLine("using Wolt_ConsoleApp.Twilio;");
+            Console.WriteLine("using Wolt_ConsoleApp.Functions.SystemFunctions;");
+            Console.WriteLine("using Wolt_ConsoleApp.Functions.UserFunctions;");    
+            Console.WriteLine("using Wolt_ConsoleApp.Functions.DataFunctions;");
+            Console.WriteLine("using Twilio.Types;");
+            Console.WriteLine("using Twilio.Rest.Api.V2010.Account;");
+            Console.WriteLine("using System.Net.Mail;");
+            Console.WriteLine("using System.Net;");
+            Console.WriteLine("using System.Text;");
+            Console.WriteLine("using System.Text.RegularExpressions;");
+            Console.WriteLine("using System.Globalization;");
+            Console.WriteLine("using PdfSharpCore.Drawing;");
+            Console.WriteLine("using PdfSharpCore.Pdf;");
+            Console.WriteLine("using BCrypt.Net;");
+            Console.WriteLine("using FluentValidation;");
+            Console.WriteLine("using Microsoft.EntityFrameworkCore;");
+            Console.ResetColor();
+            Line();
+            Console.ReadKey();
         }
         else if (choice == "3")
         {

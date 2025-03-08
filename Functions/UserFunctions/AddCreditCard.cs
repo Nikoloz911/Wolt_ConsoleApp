@@ -1,5 +1,4 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
 using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Models;
 namespace Wolt_ConsoleApp.Functions.UserFunctions
