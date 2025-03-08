@@ -360,9 +360,9 @@ internal class OrderProducts
                             int yPosition = 20;
                              gfx.DrawString($"Order ID: {newOrder.Id}", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
-                             gfx.DrawString($"User ID: {newOrder.UserId}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             gfx.DrawString($"User Name: {newOrder.User.UserName}", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
-                             gfx.DrawString($"Restaurant ID: {newOrder.RestaurantId}", font, XBrushes.Black, new XPoint(20, yPosition));
+                             gfx.DrawString($"Restaurant Name: {newOrder.Restaurant.RestaurantName}", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
                              gfx.DrawString($"Order Status: {newOrder.OrderStatus}", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
@@ -370,11 +370,11 @@ internal class OrderProducts
                              yPosition += 20;
                              gfx.DrawString($"Order Date: {DateTime.Now}", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
-                             gfx.DrawString("Order Items:", font, XBrushes.Black, new XPoint(20, yPosition));
+                             gfx.DrawString("Order Item:", font, XBrushes.Black, new XPoint(20, yPosition));
                              yPosition += 20;
                         foreach (var item in newOrder.OrderItems)
                         {
-                            gfx.DrawString($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}$", font, XBrushes.Black, new XPoint(20, yPosition));
+                            gfx.DrawString($"- Product ID: {item.ProductId}, Quantity: {item.Quantity}, Unit Price: {item.Product.ProductPrice}$", font, XBrushes.Black, new XPoint(20, yPosition));
                             yPosition += 20;
                         }
                          document.Save(pdfFilePath);
