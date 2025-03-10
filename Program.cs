@@ -2,20 +2,23 @@
 using Wolt_ConsoleApp.Functions;
 
 static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+static void ColorLine(string text, ConsoleColor color)
+{ Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
+
 //DataContext _context = new DataContext();
 //AddData.AddRestaurantsAndProductsData(_context);
 
 bool running = true;
 while (running)
 {
-    Console.WriteLine("1. User Management");
-    Console.WriteLine("2. Data Management");  
-    Console.WriteLine("3. Order Products");
-    Console.WriteLine("4. Order Details");
-    Console.WriteLine("5. Analytics");
-    Console.WriteLine("6. File Management");
-    Console.WriteLine("7. System");
-    Console.WriteLine("8. Delete Database Table");
+    ColorLine("1. User Management", ConsoleColor.Green);
+    ColorLine("2. Data Management", ConsoleColor.Yellow);
+    ColorLine("3. Order Products", ConsoleColor.Cyan);
+    ColorLine("4. Order Details", ConsoleColor.Blue);
+    ColorLine("5. Analytics", ConsoleColor.Yellow);
+    ColorLine("6. File Management", ConsoleColor.Cyan);
+    ColorLine("7. System", ConsoleColor.Green);
+    ColorLine("8. Delete Database Table", ConsoleColor.Red);
     string choice = Console.ReadLine();
     if (choice == "1")
     {
