@@ -4,13 +4,15 @@ internal class SystemFunction
 {
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+    public static void ColorLine(string text, ConsoleColor color)
+    { Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
     public static void SystemVoid()
     {
-        Clear();    
-        Console.WriteLine("1. Show System Information");
-        Console.WriteLine("2. Show Usings");
-        Console.WriteLine("3. Show System Log");
-        Console.WriteLine("4. Show Projects Details");
+        Clear();
+        ColorLine("1. Show System Information", ConsoleColor.Green);
+        ColorLine("2. Show Usings", ConsoleColor.Yellow);
+        ColorLine("3. Show System Log", ConsoleColor.Cyan);
+        ColorLine("4. Show Projects Details", ConsoleColor.Blue);
         string choice = Console.ReadLine();
         Clear();
         if (choice == "1")
@@ -67,9 +69,11 @@ internal class SystemFunction
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Invalid choice!");
             Line();
+            Console.ResetColor();
         }
     }
     public static void ReadAllFiles()
@@ -89,9 +93,11 @@ internal class SystemFunction
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("User file not found.");
             Line();
+            Console.ResetColor();
         }
 
         // Read Products file
@@ -107,9 +113,11 @@ internal class SystemFunction
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Products file not found.");
             Line();
+            Console.ResetColor();
         }
 
         // Read Restaurants file
@@ -125,9 +133,11 @@ internal class SystemFunction
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Restaurants file not found.");
             Line();
+            Console.ResetColor();
         }
 
         // Read Orders file
@@ -143,9 +153,11 @@ internal class SystemFunction
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Orders file not found.");
             Line();
+            Console.ResetColor();
         }
     }
 }
