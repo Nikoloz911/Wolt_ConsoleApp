@@ -135,6 +135,9 @@ internal class LogIn
                     isValidPassword = true;
                     isLoggedIn = true;
                     _context.SaveChanges();
+                    // Write In file
+                    string loginData = $"User: {user.UserName} {user.UserLastName} logged in at {DateTime.Now}";
+                    UserManagement.WriteToFile(loginData);
                 }
                 else
                 {

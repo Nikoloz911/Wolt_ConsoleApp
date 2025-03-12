@@ -127,13 +127,17 @@ internal class LogOut
                 {
                     Clear();
                     Line();
-                    Console.WriteLine($"User: {userName} Loged Out Successful!");
+                    Console.WriteLine($"User: {userName} Logged Out Successfully!");
                     Line();
                     user.IsActive = false;
                     isValidPassword = true;
-                    isLoggedIn = true;
+                    isLoggedIn = true; // NOT TRUE. just exits loops
                     _context.SaveChanges();
+                    // Write In File
+                    string logoutData = $"User: {user.UserName} {user.UserLastName} logged out at {DateTime.Now}";
+                    UserManagement.WriteToFile(logoutData);
                 }
+
                 else
                 {
                     Clear();
