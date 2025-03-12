@@ -56,9 +56,11 @@ internal class UserManagement
                     break;
                 case "4":
                     /// USER LIST  /// USER LIST  /// USER LIST
+                    _context.ChangeTracker.Clear(); 
                     var users = _context.Users
                                         .OrderBy(u => u.UserName)
                                         .Include(d => d.UserDetails)
+                                        .AsNoTracking()
                                         .ToList();
                     Clear();
                     if (users.Any())

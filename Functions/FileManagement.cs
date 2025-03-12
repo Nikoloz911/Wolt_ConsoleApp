@@ -3,13 +3,15 @@ internal class FileManagement
 {
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
+    public static void ColorLine(string text, ConsoleColor color)
+    { Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
     public static void FileManagementVoid()
     {
         Clear();
-        Console.WriteLine("1. Read User File");
-        Console.WriteLine("2. Read Products File");
-        Console.WriteLine("3. Read Restaurants File");
-        Console.WriteLine("4. Read Orders File");
+        ColorLine("1. Read User File", ConsoleColor.Blue);
+        ColorLine("2. Read Products File", ConsoleColor.Green);
+        ColorLine("3. Read Restaurants File", ConsoleColor.Yellow);
+        ColorLine("4. Read Orders File", ConsoleColor.Cyan);
         string choice = Console.ReadLine();
         Clear();
         if(choice == "1")
@@ -52,9 +54,11 @@ internal class FileManagement
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("User file not found.");
             Line();
+            Console.ResetColor();
         }
     }
     /// USER FILE READ TO END   /// USER FILE READ TO END   /// USER FILE READ TO END
@@ -74,9 +78,11 @@ internal class FileManagement
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Products file not found.");
             Line();
+            Console.ResetColor();
         }
     }
     /// PRODUCTS FILE READ TO END    /// PRODUCTS FILE READ TO END
@@ -96,9 +102,11 @@ internal class FileManagement
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Restaurants file not found.");
             Line();
+            Console.ResetColor();
         }
     }
     /// RESTAURANTS FILE READ TO END   /// RESTAURANTS FILE READ TO END
@@ -118,9 +126,11 @@ internal class FileManagement
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("Orders file not found.");
             Line();
+            Console.ResetColor();
         }
     }
     /// ORDERS FILE READ TO END   /// ORDERS FILE READ TO END

@@ -265,12 +265,12 @@ internal class SingUp
                                     Clear();
                                     /// TWILIO SERVICE
                                     var FullPhoneNumber = "+995" + PhoneNumber;
-                                    //var twilioService = new TwilioService();
-                                    //string sentCode = twilioService.SendVerificationCode(FullPhoneNumber);
+                                    var twilioService = new TwilioService();
+                                    string sentCode = twilioService.SendVerificationCode(FullPhoneNumber);
                                     //// TWILIO SERVICE
                                     Console.WriteLine("Enter Verification Code:");
                                     string ConfirmCode = Console.ReadLine();
-                                    if (ConfirmCode == "1") /// sendCode
+                                    if (ConfirmCode == sentCode) /// sendCode
                                     {
                                     }
                                     else
@@ -374,5 +374,4 @@ internal class SingUp
             /// END REGISTRATION  /// END REGISTRATION
         }
     }
-
 }

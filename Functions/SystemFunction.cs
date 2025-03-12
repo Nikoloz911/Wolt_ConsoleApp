@@ -69,8 +69,13 @@ internal class SystemFunction
             Console.WriteLine("SMTP : 2");
             Console.WriteLine("Twilio : 1");
             Console.WriteLine("Interfaces : 0");
+            Console.WriteLine("");
+            Console.WriteLine("Lines of Source Code : 7235");
+            Console.WriteLine("Lines of Executable Code : 3748");
             Line();
             Console.ResetColor();
+            Console.ReadKey();
+            Clear();
         }
         else
         {

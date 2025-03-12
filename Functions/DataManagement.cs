@@ -10,6 +10,8 @@ namespace Wolt_ConsoleApp.Functions
         public static void Clear() => Console.Clear();
         public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
         public static int LineLong() { Console.WriteLine(new string('-', 100)); return 100; }
+        public static void ColorLine(string text, ConsoleColor color)
+        { Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
         public static void WriteToFile(string data)
         {
             if (!File.Exists(filePath))
@@ -41,15 +43,15 @@ namespace Wolt_ConsoleApp.Functions
             Clear();
             while (!MainMenu)
             {      
-                Console.WriteLine("1. Add Product");
-                Console.WriteLine("2. Add Restaurant");
-                Console.WriteLine("3. Edit Product");
-                Console.WriteLine("4. Edit Restaurant");
-                Console.WriteLine("5. Remove Product");
-                Console.WriteLine("6. Remove Restaurant");
-                Console.WriteLine("7. Product List");
-                Console.WriteLine("8. Restaurant List");
-                Console.WriteLine("9. Main Menu");
+                ColorLine("1. Add Product", ConsoleColor.Green);
+                ColorLine("2. Add Restaurant", ConsoleColor.Green);
+                ColorLine("3. Edit Product", ConsoleColor.Yellow);
+                ColorLine("4. Edit Restaurant" , ConsoleColor.Yellow);
+                ColorLine("5. Remove Product", ConsoleColor.Red);
+                ColorLine("6. Remove Restaurant", ConsoleColor.Red);
+                ColorLine("7. Product List", ConsoleColor.Cyan);
+                ColorLine("8. Restaurant List", ConsoleColor.Cyan);
+                ColorLine("9. Main Menu", ConsoleColor.Green);
                 string choice = Console.ReadLine()?.Trim();
                 Clear();
                 switch (choice)
@@ -84,9 +86,11 @@ namespace Wolt_ConsoleApp.Functions
                         break;
                     default:
                         Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Line();
                         Console.WriteLine("Invalid Choice!");
                         Line();
+                        Console.ResetColor();
                         MainMenu = false;
                         break;
                 }
