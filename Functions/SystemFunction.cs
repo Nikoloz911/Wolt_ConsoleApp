@@ -37,6 +37,7 @@ internal class SystemFunction
             Console.WriteLine("using Twilio.Rest.Api.V2010.Account;");
             Console.WriteLine("using System.Net.Mail;");
             Console.WriteLine("using System.Net;");
+            Console.WriteLine("using System.Management;");
             Console.WriteLine("using System.Text;");
             Console.WriteLine("using System.Text.RegularExpressions;");
             Console.WriteLine("using System.Globalization;");
@@ -48,6 +49,7 @@ internal class SystemFunction
             Console.ResetColor();
             Line();
             Console.ReadKey();
+            Clear();
         }
         else if (choice == "3")
         {
@@ -55,17 +57,20 @@ internal class SystemFunction
         }
         else if (choice == "4")
         {
-            Console.WriteLine("");
-
-            // Total Classes : 47
-            // Functions Classes : 24
-            // Validators : 7
-            // Models : 8
-            // Data : 3
-            // Enums : 2
-            // SMTP : 2
-            // Twilio : 1
-            // Interfaces : 0
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Line();
+            Console.WriteLine("Total Folders : 12");
+            Console.WriteLine("Total Classes : 50");
+            Console.WriteLine("Functions Classes : 24");
+            Console.WriteLine("Validators : 7");
+            Console.WriteLine("Models : 8");
+            Console.WriteLine("Data : 3");
+            Console.WriteLine("Enums : 2");
+            Console.WriteLine("SMTP : 2");
+            Console.WriteLine("Twilio : 1");
+            Console.WriteLine("Interfaces : 0");
+            Line();
+            Console.ResetColor();
         }
         else
         {
