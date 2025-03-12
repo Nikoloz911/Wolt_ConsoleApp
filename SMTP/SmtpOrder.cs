@@ -5,7 +5,7 @@ namespace Wolt_ConsoleApp.SMTP
 {
     internal class SmtpOrder
     {
-        public static void SendOrderEmail(string ToAddress, string attachmentPath, string customerName, string restaurantName, string creditCardNumber = null)
+        public static void SendOrderEmail(string ToAddress, string attachmentPathTXT, string attachmentPathPDF, string customerName, string restaurantName, string creditCardNumber = null)
         {
             string senderEmail = "nikalobjanidze014@gmail.com";
             string appPassword = "smyz bznq fdrx tazq";
@@ -19,7 +19,7 @@ namespace Wolt_ConsoleApp.SMTP
             string RandomizedImageUrl = imageUrls[random.Next(0, imageUrls.Length)];
 
             // Parse the order file to extract necessary information
-            var orderInfo = ParseOrderFile(attachmentPath);
+            var orderInfo = ParseOrderFile(attachmentPathTXT);
 
             // Override with the passed parameters
             if (!string.IsNullOrEmpty(customerName))
@@ -103,7 +103,8 @@ namespace Wolt_ConsoleApp.SMTP
             mail.Body = htmlContent;
             mail.IsBodyHtml = true;
 
-            mail.Attachments.Add(new Attachment(attachmentPath));
+            mail.Attachments.Add(new Attachment(attachmentPathTXT));
+            mail.Attachments.Add(new Attachment(attachmentPathPDF));
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {

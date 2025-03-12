@@ -5,27 +5,42 @@ using Microsoft.EntityFrameworkCore;
 namespace Wolt_ConsoleApp.Functions;
 internal class UserManagement
 {
+    public static readonly string filePath = "User.txt";
     public static void Clear() => Console.Clear();
     public static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
     public static int LineLong() { Console.WriteLine(new string('-', 120)); return 120; }
-
+    public static void ColorLine(string text, ConsoleColor color)
+    { Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
+    public static void WriteToFile(string data)
+    {
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
+        File.AppendAllText(filePath, data + Environment.NewLine);
+    }
     public static bool UserManagementVoid()
     {
+
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath).Close();
+        }
         DataContext _context = new DataContext();
         bool MainMenu = false;
         Clear();
         while (!MainMenu)
         {
-            Console.WriteLine("1. Sign Up");
-            Console.WriteLine("2. Log in User");
-            Console.WriteLine("3. Log out User");
-            Console.WriteLine("4. User List");
-            Console.WriteLine("5. Add Credit Card");
-            Console.WriteLine("6. Credit Card Information");
-            Console.WriteLine("7. Add Balance");
-            Console.WriteLine("8. Purchase Wolt+");
-            Console.WriteLine("9. Cancel WoltPlus Subscription");
-            Console.WriteLine("10. Main Menu");
+            ColorLine("1. Sign Up", ConsoleColor.Green);
+            ColorLine("2. Log in User", ConsoleColor.Cyan);
+            ColorLine("3. Log out User", ConsoleColor.Red);
+            ColorLine("4. User List", ConsoleColor.Yellow);
+            ColorLine("5. Add Credit Card", ConsoleColor.Green);
+            ColorLine("6. Credit Card Information", ConsoleColor.Blue);
+            ColorLine("7. Add Balance", ConsoleColor.Yellow);
+            ColorLine("8. Purchase Wolt+", ConsoleColor.Green);
+            ColorLine("9. Cancel WoltPlus Subscription", ConsoleColor.Red);
+            ColorLine("10. Main Menu", ConsoleColor.Green);
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -41,9 +56,11 @@ internal class UserManagement
                     break;
                 case "4":
                     /// USER LIST  /// USER LIST  /// USER LIST
+                    _context.ChangeTracker.Clear(); 
                     var users = _context.Users
                                         .OrderBy(u => u.UserName)
                                         .Include(d => d.UserDetails)
+                                        .AsNoTracking()
                                         .ToList();
                     Clear();
                     if (users.Any())
@@ -146,9 +163,11 @@ internal class UserManagement
                     return true;
                 default:
                     Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Line();
                     Console.WriteLine("Invalid choice!");
                     Line();
+                    Console.ResetColor();
                     break;
             }
         }

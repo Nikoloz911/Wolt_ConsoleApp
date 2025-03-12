@@ -12,8 +12,8 @@ using Wolt_ConsoleApp.Data;
 namespace Wolt_ConsoleApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250207105049_missingProperty")]
-    partial class missingProperty
+    [Migration("20250310174315_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

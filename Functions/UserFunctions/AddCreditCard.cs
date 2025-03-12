@@ -1,5 +1,4 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
 using Wolt_ConsoleApp.Data;
 using Wolt_ConsoleApp.Models;
 namespace Wolt_ConsoleApp.Functions.UserFunctions
@@ -383,6 +382,10 @@ namespace Wolt_ConsoleApp.Functions.UserFunctions
                                                 Line();
                                                 Console.WriteLine("Credit Card Added Successfully!");
                                                 Line();
+                                                // Write In File
+                                                string cardData = $"User: {user.UserName} added Credit Card: {UserCreditCardNumber}, Balance: {UserCreditCardBalance} at {DateTime.Now}";
+                                                UserManagement.WriteToFile(cardData);
+
                                                 IsValidHolderName = true;
                                                 IsValidCreditCardNumber = true;
                                                 IsValidExpiryDate = true;

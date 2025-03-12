@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Wolt_ConsoleApp.Data;
-using Wolt_ConsoleApp.Models;
+﻿using Wolt_ConsoleApp.Data;
 namespace Wolt_ConsoleApp.Functions.UserFunctions;
 internal class RemoveWoltPlus
 {
@@ -75,6 +73,9 @@ internal class RemoveWoltPlus
                     Line();
                     isRemovedWoltPlus = true;
                     validChoice = true;
+                    // Write In File
+                    string cancellationData = $"User: {user.UserName} {user.UserLastName} cancelled WoltPlus at {DateTime.Now}";
+                    UserManagement.WriteToFile(cancellationData);
                 }
                 else if (confirmChoice == "2")
                 {

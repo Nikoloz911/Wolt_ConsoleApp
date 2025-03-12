@@ -102,6 +102,9 @@ internal class EditRestaurant
             Clear();
             Line();
             ShowSuccessMessage($"Restaurant New Name is: {newName}");
+            // Write In File
+            string nameChangeData = $"Old Name: {selectedRestaurant.RestaurantName}, New Name: {newName}, Changed: {DateTime.Now}";
+            DataManagement.WriteToFileRestaurant(nameChangeData);
             break;
         }
     }
@@ -136,6 +139,9 @@ internal class EditRestaurant
             Clear();
             Line();
             ShowSuccessMessage($"Restaurant {selectedRestaurant.RestaurantName} New Balance Is: {newBalance}");
+            // Write In File
+            string balanceChangeData = $"Restaurant: {selectedRestaurant.RestaurantName}, Old Balance: {selectedRestaurant.RestaurantBalance}, New Balance: {newBalance}, Changed: {DateTime.Now}";
+            DataManagement.WriteToFileRestaurant(balanceChangeData);
             break;
         }
     }
@@ -174,6 +180,9 @@ internal class EditRestaurant
             Clear();
             Line();
             ShowSuccessMessage($"Restaurant {selectedRestaurant.RestaurantName} New Rating Is: {newRating}");
+            // Write In File
+            string RatingChageData = $"Restaurant: {selectedRestaurant.RestaurantName}, Old Rating: {selectedRestaurant.Rating}, New Rating: {newRating}, Date: {DateTime.Now}";
+            DataManagement.WriteToFileRestaurant(RatingChageData);
             break;
         }
     }
@@ -204,6 +213,9 @@ internal class EditRestaurant
             Clear();
             Line();
             ShowSuccessMessage($"Restaurant {selectedRestaurant.RestaurantName} New Availability Is: {availability}");
+            // Write In File
+            string DeliveryAvailableChange = $"Restaurant: {selectedRestaurant.RestaurantName}, Old Availability: {selectedRestaurant.DeliveryAvailable}, New Availability: {availability}, Date: {DateTime.Now}";
+            DataManagement.WriteToFileRestaurant(DeliveryAvailableChange);
             break;
         }
     }

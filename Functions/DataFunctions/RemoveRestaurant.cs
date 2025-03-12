@@ -33,6 +33,9 @@ internal class RemoveRestaurant
                     _context.SaveChanges();
                     Line();
                     Console.WriteLine($"Restaurant '{RestaurantName}' has been removed successfully.");
+                    // Write In File
+                    string restaurantRemoved = $"Restaurant Removed: Name: {RestaurantName}, Date: {DateTime.Now}";
+                    DataManagement.WriteToFileRestaurant(restaurantRemoved);
                     Line();
                     return true;
                 }

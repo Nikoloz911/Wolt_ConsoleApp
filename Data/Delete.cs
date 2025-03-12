@@ -21,6 +21,7 @@ internal class Delete
         while (!IsDeleted)
         {
             Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("1. Delete Users Table");
             Console.WriteLine("2. Delete Users Details Table");
             Console.WriteLine("3. Delete Restaurants Table");
@@ -29,8 +30,13 @@ internal class Delete
             Console.WriteLine("6. Delete Orders Table");
             Console.WriteLine("7. Delete OrderItems Table");
             Console.WriteLine("8. Delete CreditCards Table");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("9. Delete ALL Table");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("10. Exit");
+            Console.ResetColor();  
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -39,9 +45,11 @@ internal class Delete
                 if (users.Any()) _context.Users.RemoveRange(users);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("User Data Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "2")
             {
@@ -50,9 +58,11 @@ internal class Delete
                 if (usersDetails.Any()) _context.UsersDetails.RemoveRange(usersDetails);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("User Details Data Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "3")
             {
@@ -61,9 +71,11 @@ internal class Delete
                 if (restaurants.Any()) _context.Restaurants.RemoveRange(restaurants);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("Restaurants Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "4")
             {
@@ -72,9 +84,11 @@ internal class Delete
                 if (products.Any()) _context.Products.RemoveRange(products);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("Products Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "5")
             {
@@ -83,9 +97,11 @@ internal class Delete
                 if (payments.Any()) _context.Payments.RemoveRange(payments);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("Payments Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "6")
             {
@@ -94,9 +110,11 @@ internal class Delete
                 if (orders.Any()) _context.Orders.RemoveRange(orders);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("Orders Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "7")
             {
@@ -105,9 +123,11 @@ internal class Delete
                 if (orderItems.Any()) _context.OrderItems.RemoveRange(orderItems);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("OrderItems Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "8")
             {
@@ -116,9 +136,11 @@ internal class Delete
                 if (creditCards.Any()) _context.CreditCards.RemoveRange(creditCards);
                 _context.SaveChanges();
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("CreditCards Has Been Deleted");
                 Line();
+                Console.ResetColor();
             }
             else if (choice == "9")
             {
@@ -135,36 +157,42 @@ internal class Delete
             else
             {
                 Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Line();
                 Console.WriteLine("Invalid choice!");
                 Line();
+                Console.ResetColor();
             }
         }
         /// DELETE ALL DATA FUNCTION  /// DELETE ALL DATA FUNCTION
         void DeleteAllData(DataContext _context)
         {
-            List<User> users = _context.Users.ToList();
-            List<UserDetails> usersDetails = _context.UsersDetails.ToList();
-            List<Restaurants> restaurants = _context.Restaurants.ToList();
-            List<Product> products = _context.Products.ToList();
             List<Payment> payments = _context.Payments.ToList();
-            List<Order> orders = _context.Orders.ToList();
-            List<OrderItem> orderItems = _context.OrderItems.ToList();
-            List<CreditCard> creditCards = _context.CreditCards.ToList();
+            List<CreditCard> creditCards = _context.CreditCards.ToList(); 
+            if (payments.Any()) _context.Payments.RemoveRange(payments); 
             if (creditCards.Any()) _context.CreditCards.RemoveRange(creditCards);
+            _context.SaveChanges();
+            List<OrderItem> orderItems = _context.OrderItems.ToList();
+            List<Order> orders = _context.Orders.ToList();
+            List<Product> products = _context.Products.ToList();
+            List<Restaurants> restaurants = _context.Restaurants.ToList();
+            List<UserDetails> usersDetails = _context.UsersDetails.ToList();
+            List<User> users = _context.Users.ToList();
             if (orderItems.Any()) _context.OrderItems.RemoveRange(orderItems);
             if (orders.Any()) _context.Orders.RemoveRange(orders);
-            if (payments.Any()) _context.Payments.RemoveRange(payments);
             if (products.Any()) _context.Products.RemoveRange(products);
             if (restaurants.Any()) _context.Restaurants.RemoveRange(restaurants);
             if (usersDetails.Any()) _context.UsersDetails.RemoveRange(usersDetails);
             if (users.Any()) _context.Users.RemoveRange(users);
             _context.SaveChanges();
             Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Line();
             Console.WriteLine("ALL Tables Data Has Been Deleted");
             Line();
+            Console.ResetColor();
         }
+
         /// DELETE ALL DATA FUNCTION  /// DELETE ALL DATA FUNCTION
     }
 }

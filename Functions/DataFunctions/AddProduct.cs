@@ -177,6 +177,9 @@ namespace Wolt_ConsoleApp.Functions.DataFunctions
                 Line();
                 Console.WriteLine("Product Added successfully!");
                 Line();
+                // Write In File
+                string productData = $"Product: {newProduct.ProductName}, Price: {newProduct.ProductPrice}, Available: {newProduct.IsAvailable}, Quantity: {newProduct.ProductQuantity}, RestaurantId: {newProduct.RestaurantsId}, Added: {DateTime.Now}";
+                DataManagement.WriteToFile(productData);
                 IsProductAdded = true;
                 return true;
             }
