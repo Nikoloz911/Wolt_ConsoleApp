@@ -15,7 +15,7 @@ internal class DataContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Data Source=LENOVO\SQLEXPRESS;Initial Catalog=Wolt_Database;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        optionsBuilder.UseSqlServer(@"Data Source=LENOVO\SQLEXPRESS;Initial Catalog=Wolt_Test;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ internal class DataContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Payment>()
             .HasOne(p => p.CreditCard)
-            .WithMany()
+            .WithMany(c => c.Payments)
             .HasForeignKey(p => p.CreditCardId)
             .OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Payment>()

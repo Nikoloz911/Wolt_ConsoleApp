@@ -6,7 +6,7 @@ internal class SmtpUser
     public static void RegistrationEmailSender(string ToAddress, string UserName)
     {
         string senderEmail = "nikalobjanidze014@gmail.com";
-        string appPassword = "smyz bznq fdrx tazq";
+        string appPassword = "APP_PASSWORD_HERE"; // APP PASSWORD
         /// EMAIL HTML CONTENT  /// EMAIL HTML CONTENT /// EMAIL HTML CONTENT
         /// EMAIL HTML CONTENT  /// EMAIL HTML CONTENT /// EMAIL HTML CONTENT
         /// EMAIL HTML CONTENT  /// EMAIL HTML CONTENT /// EMAIL HTML CONTENT

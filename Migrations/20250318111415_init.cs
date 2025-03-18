@@ -180,8 +180,7 @@ namespace Wolt_ConsoleApp.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CreditCardId = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreditCardId1 = table.Column<int>(type: "int", nullable: true)
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,11 +191,6 @@ namespace Wolt_ConsoleApp.Migrations
                         principalTable: "CreditCards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Payments_CreditCards_CreditCardId1",
-                        column: x => x.CreditCardId1,
-                        principalTable: "CreditCards",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Payments_Orders_OrderId",
                         column: x => x.OrderId,
@@ -240,11 +234,6 @@ namespace Wolt_ConsoleApp.Migrations
                 name: "IX_Payments_CreditCardId",
                 table: "Payments",
                 column: "CreditCardId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_CreditCardId1",
-                table: "Payments",
-                column: "CreditCardId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_OrderId",
