@@ -6,7 +6,7 @@ namespace Wolt_ConsoleApp.Twilio;
 internal class TwilioService
 {
     private readonly string _accountSid = "AC6050d2b967b8562ed0db05e3c377433f";
-    private readonly string _authToken = "594b1f968bb5df2103017ce07055d18d";
+    private readonly string _authToken = "AUTH_TOKEN_HERE"; // AUTH TOKEN
     private readonly string _fromPhoneNumber = "+19783076324";
 
     public string SendVerificationCode(string toPhoneNumber)

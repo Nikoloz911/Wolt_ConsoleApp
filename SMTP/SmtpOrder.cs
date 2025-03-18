@@ -8,7 +8,7 @@ namespace Wolt_ConsoleApp.SMTP
         public static void SendOrderEmail(string ToAddress, string attachmentPathTXT, string attachmentPathPDF, string customerName, string restaurantName, string creditCardNumber = null)
         {
             string senderEmail = "nikalobjanidze014@gmail.com";
-            string appPassword = "smyz bznq fdrx tazq";
+            string appPassword = "APP_PASSWORD_HERE"; // APP PASSWORD
             string subject = "Your Order Confirmation";
             string[] imageUrls =
             {
