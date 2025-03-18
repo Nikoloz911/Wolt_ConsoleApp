@@ -128,9 +128,6 @@ namespace Wolt_ConsoleApp.Migrations
                     b.Property<int>("CreditCardId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreditCardId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -147,8 +144,6 @@ namespace Wolt_ConsoleApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreditCardId");
-
-                    b.HasIndex("CreditCardId1");
 
                     b.HasIndex("OrderId")
                         .IsUnique();
@@ -332,14 +327,10 @@ namespace Wolt_ConsoleApp.Migrations
             modelBuilder.Entity("Wolt_ConsoleApp.Models.Payment", b =>
                 {
                     b.HasOne("Wolt_ConsoleApp.Models.CreditCard", "CreditCard")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("CreditCardId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Wolt_ConsoleApp.Models.CreditCard", null)
-                        .WithMany("Payments")
-                        .HasForeignKey("CreditCardId1");
 
                     b.HasOne("Wolt_ConsoleApp.Models.Order", "Order")
                         .WithOne("Payment")

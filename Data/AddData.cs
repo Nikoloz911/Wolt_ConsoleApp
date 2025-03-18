@@ -28,7 +28,7 @@ internal class AddData
         };
         foreach (var restaurant in restaurants)
         {
-            var existingRestaurant = context.Restaurants
+            var existingRestaurant = _context.Restaurants
                 .FirstOrDefault(r => r.RestaurantName.ToLower() == restaurant.RestaurantName.ToLower());
 
             if (existingRestaurant == null)

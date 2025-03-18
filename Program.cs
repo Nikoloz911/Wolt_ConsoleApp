@@ -5,8 +5,11 @@ static int Line() { Console.WriteLine(new string('-', 60)); return 60; }
 static void ColorLine(string text, ConsoleColor color)
 { Console.ForegroundColor = color; Console.WriteLine(text); Console.ResetColor(); }
 
-DataContext _context = new DataContext();
-AddData.AddRestaurantsAndProductsData(_context);
+/// First create the database and tables
+/// Then remove this code from the comment below and populate the database with data.
+
+//DataContext _context = new DataContext();
+//AddData.AddRestaurantsAndProductsData(_context);
 
 bool running = true;
 while (running)
