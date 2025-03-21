@@ -60,6 +60,7 @@
 - **BCrypt.Net**
 - **System.Manaagement**
 - **LINQ**
+- **Fluent Validations**
 
 ---
 
